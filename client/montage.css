@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Avenir Next";
+  font-style: normal;
+  font-weight: normal;
+  src: url("resources/fonts/Avenir Next.eot?iefix") format("eot");
+}
+
+@font-face {
+  font-family: "Avenir Next";
+  font-style: normal;
+  font-weight: normal;
+  src: url("resources/fonts/Avenir Next.eot?iefix");
+  src: url("resources/fonts/Avenir Next.woff") format("woff"),
+    url("resources/fonts/46cf1067-688d-4aab-b0f7-bd942af6efd8.ttf")
+      format("truetype");
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: black;
+  background-image: url(resources/blackFelt.jpg);
+  background-size: cover;
+  color: white;
+  font-family: "Avenir Next", Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
