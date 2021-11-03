@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "noEmit": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "target": "ESNext"
+  },
+  "include": ["src/**/*.js", "test/**/*.js"]
+}
