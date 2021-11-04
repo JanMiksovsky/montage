@@ -2,6 +2,10 @@
   "name": "montage",
   "version": "0.0.1",
   "type": "module",
+  "dependencies": {
+    "exif-parser": "0.1.12",
+    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#a0a2a5e7"
+  },
   "devDependencies": {
     "@types/chai": "4.2.22",
     "@types/mocha": "9.0.0",
