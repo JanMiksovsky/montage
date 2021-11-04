@@ -5,28 +5,92 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="montage.css" />
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: grid;
+        /* grid-template-columns: 1fr; */
+        /* grid-template-rows: 1fr; */
+        justify-content: center;
+        --gap: 10px;
+        --gap: 0px;
+        padding: var(--gap);
+        /* padding: 20px; */
+      }
+
+      .grid {
+        box-sizing: border-box;
+        display: grid;
+      }
+
       img {
         max-height: 100%;
         max-width: 100%;
+      }
+
+      .wrapper {
+        display: grid;
+        padding: var(--gap);
+      }
+
+      .photo {
+        background-size: cover;
+      }
+
+      .aspect3to4 {
+        aspect-ratio: 3 / 4;
+        /* aspect-ratio: 4 / 3; */
+        /* aspect-ratio: 1/2; */
+      }
+
+      .aspect4to3 {
+        aspect-ratio: 4 / 3;
+        /* aspect-ratio: 1/2; */
       }
     </style>
   </head>
   <body>
     <div
+      class="grid"
       style="
-        aspect-ratio: 7 / 6;
-        display: grid;
+        aspect-ratio: 0.96000384;
         grid-template-columns: 1fr 1fr;
-        height: 100%;
+        grid-template-rows: 1fr;
+        max-height: 100%;
+        max-width: 100%;
       "
     >
-      <div style="display: grid; grid-template-rows: 3fr 4fr">
-        <img src="samples/Big White/Big White 001.JPG" />
-        <img src="samples/Big White/Big White 024.JPG" />
+      <div class="grid">
+        <div
+          class="photo aspect4to3"
+          style="
+            background-image: url(samples/Big%20White/Big%20White%20001.JPG);
+          "
+        ></div>
+
+        <div
+          class="photo aspect3to4"
+          style="
+            background-image: url(samples/Big%20White/Big%20White%20024.JPG);
+          "
+        ></div>
       </div>
-      <div style="display: grid; grid-template-rows: 4fr 3fr">
-        <img src="samples/Big White/Big White 004.JPG" />
-        <img src="samples/Big White/Big White 027.JPG" />
+      <div class="grid">
+        <div
+          class="photo aspect3to4"
+          style="
+            background-image: url(samples/Big%20White/Big%20White%20004.JPG);
+          "
+        ></div>
+
+        <div
+          class="photo aspect4to3"
+          style="
+            background-image: url(samples/Big%20White/Big%20White%20027.JPG);
+          "
+        ></div>
       </div>
     </div>
   </body>
