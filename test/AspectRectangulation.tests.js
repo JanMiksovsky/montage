@@ -38,43 +38,40 @@ describe("AspectRectangulation", () => {
       AspectRectangulation.orientation.HORIZONTAL
     );
     // Consdier right child's child's children.
-    return assert.deepEqual(rightRightChild.children, [1, 1]);
+    assert.deepEqual(rightRightChild.children, [1, 1]);
   });
 
   it("aspect ratio horizontal", () => {
     const rectangulation = new AspectRectangulation(example1by2);
-    return assert.equal(rectangulation.aspect(), 0.5);
+    assert.equal(rectangulation.aspect(), 0.5);
   });
 
   it("aspect ratio vertical", () => {
     const rectangulation = new AspectRectangulation(example2by1);
-    return assert.equal(rectangulation.aspect(), 2);
+    assert.equal(rectangulation.aspect(), 2);
   });
 
   it("aspect ratio complex", () => {
     const rectangulation = new AspectRectangulation(exampleComplex);
-    return assert.equal(rectangulation.aspect().toFixed(5), 3 / 5);
+    assert.equal(rectangulation.aspect().toFixed(5), 3 / 5);
   });
 
   it("to array", () => {
     const rectangulation = new AspectRectangulation(exampleComplex);
-    return assert.deepEqual(rectangulation.toArray(), exampleComplex);
+    assert.deepEqual(rectangulation.toArray(), exampleComplex);
   });
 
   it("replace aspects", () => {
     const original = new AspectRectangulation(exampleComplex);
     const aspects = [4 / 3, 3 / 4, 4 / 3, 4 / 3];
     const replaced = original.replaceAspects(aspects);
-    return assert.deepEqual(replaced.toArray(), [
-      4 / 3,
-      [3 / 4, [4 / 3, 4 / 3]],
-    ]);
+    assert.deepEqual(replaced.toArray(), [4 / 3, [3 / 4, [4 / 3, 4 / 3]]]);
   });
 
   it("aspect with padding, 1x1", () => {
     const rectangulation = new AspectRectangulation(example1);
     const aspect = rectangulation.aspectFactors();
-    return assert.deepEqual(aspect, {
+    assert.deepEqual(aspect, {
       aspect: 1,
       growth: 0,
     });
@@ -83,7 +80,7 @@ describe("AspectRectangulation", () => {
   it("aspect with padding, 1x2", () => {
     const rectangulation = new AspectRectangulation(example1by2);
     const aspect = rectangulation.aspectFactors();
-    return assert.deepEqual(aspect, {
+    assert.deepEqual(aspect, {
       aspect: 0.5,
       growth: 0,
     });
@@ -92,7 +89,7 @@ describe("AspectRectangulation", () => {
   it("aspect with padding, 2x1", () => {
     const rectangulation = new AspectRectangulation(example2by1);
     const aspect = rectangulation.aspectFactors();
-    return assert.deepEqual(aspect, {
+    assert.deepEqual(aspect, {
       aspect: 2,
       growth: 0,
     });
@@ -101,7 +98,7 @@ describe("AspectRectangulation", () => {
   it("aspect with padding, 2 and 3", () => {
     const rectangulation = new AspectRectangulation(example2and3);
     const aspect = rectangulation.aspectFactors();
-    return assert.deepEqual(aspect, {
+    assert.deepEqual(aspect, {
       aspect: 6 / 5,
       growth: -1.4,
     });
@@ -117,7 +114,7 @@ describe("AspectRectangulation", () => {
     const rectangulation = new AspectRectangulation(example1by2);
     const layout = rectangulation.layout(bounds);
     assert.equal(layout.aspect, 0.5);
-    return assert.deepEqual(layout.slots, [
+    assert.deepEqual(layout.slots, [
       {
         height: 50,
         left: 0,
@@ -145,7 +142,7 @@ describe("AspectRectangulation", () => {
     const layout = rectangulation.layout(bounds, padding);
     assert.equal(layout.aspect, 0.5);
     assert.equal(layout.growth, 0);
-    return assert.deepEqual(layout.slots, [
+    assert.deepEqual(layout.slots, [
       {
         height: 30,
         left: 10,
@@ -173,7 +170,7 @@ describe("AspectRectangulation", () => {
     const layout = rectangulation.layout(bounds, padding, true);
     assert.equal(layout.aspect, 0.5);
     assert.equal(layout.growth, 0);
-    return assert.deepEqual(layout.slots, [
+    assert.deepEqual(layout.slots, [
       {
         height: 40,
         left: 0,
@@ -201,7 +198,7 @@ describe("AspectRectangulation", () => {
     const layout = rectangulation.layout(bounds, padding);
     assert.equal(layout.aspect, 6 / 5);
     assert.equal(layout.growth, -1.4);
-    return assert.deepEqual(layout.slots, [
+    assert.deepEqual(layout.slots, [
       {
         height: 60,
         left: 10,
@@ -229,7 +226,7 @@ describe("AspectRectangulation", () => {
     const layout = rectangulation.layout(bounds, padding);
     assert.equal(layout.aspect, 3 / 4);
     assert.equal(layout.growth, -1 / 4);
-    return assert.deepEqual(layout.slots, [
+    assert.deepEqual(layout.slots, [
       {
         height: 200,
         left: 10,

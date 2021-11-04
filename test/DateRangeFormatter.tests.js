@@ -3,24 +3,24 @@ import assert from "./assert.js";
 
 describe("DateRangeFormatter", () => {
   it("different year", function () {
-    return verifyDateRangeFormat("1/1/2006", "12/31/2007", "2006&ndash;2007");
+    verifyDateRangeFormat("1/1/2006", "12/31/2007", "2006&ndash;2007");
   });
 
   // [ExpectedException(typeof(ArgumentException))]
   // test "dates in wrong order", ->
   //   verifyDateRangeFormat "12/31/2007", "1/1/2006", "2006&ndash;2007"
   it("different year, close months", function () {
-    return verifyDateRangeFormat(
+    verifyDateRangeFormat(
       "10/1/2006",
       "3/30/2007",
       "October 2006&thinsp;&ndash;&thinsp;March 2007"
     );
   });
   it("same year", function () {
-    return verifyDateRangeFormat("1/1/2007", "12/31/2007", "2007");
+    verifyDateRangeFormat("1/1/2007", "12/31/2007", "2007");
   });
   it("same year, close months", function () {
-    return verifyDateRangeFormat(
+    verifyDateRangeFormat(
       "1/1/2007",
       "6/30/2007",
       "January&thinsp;&ndash;&thinsp;June 2007"
@@ -32,7 +32,7 @@ describe("DateRangeFormatter", () => {
   // test "same year, adjacent months, close dates", ->
   //   verifyDateRangeFormat "1/28/2007", "2/11/2007", "January 28&thinsp;&ndash;&thinsp;February 11, 2007"
   return it("same month", function () {
-    return verifyDateRangeFormat("1/1/2007", "1/31/2007", "January 2007");
+    verifyDateRangeFormat("1/1/2007", "1/31/2007", "January 2007");
   });
 
   // test "same month, close dates", ->
@@ -46,5 +46,5 @@ function verifyDateRangeFormat(dateString1, dateString2, expected) {
   const date1 = new Date(Date.parse(dateString1));
   const date2 = new Date(Date.parse(dateString2));
   const result = DateRangeFormatter.format(date1, date2);
-  return assert.equal(result, expected);
+  assert.equal(result, expected);
 }
