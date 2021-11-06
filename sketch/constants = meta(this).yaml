@@ -1,0 +1,7 @@
+debug: true
+library = ..%client%samples: ""
+height: 9
+width: 16
+photos = if debug:
+  true: library
+  false: shuffle library
