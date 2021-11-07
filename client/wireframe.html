@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="montage.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        align-content: center;
+        display: grid;
+        /* grid-template-columns: 1fr; */
+        /* grid-template-rows: auto; */
+        justify-items: center;
+        /* --gap: 10px; */
+        --gap: 0px;
+        /* --gap: 3vmin; */
+        padding: var(--gap);
+        width: 100%;
+      }
+
+      .grid {
+        box-sizing: border-box;
+        display: grid;
+        gap: var(--gap);
+      }
+
+      .inner {
+        background: darkgray;
+        border: 2px solid white;
+        /* aspect-ratio: 8 / 8.33333; */
+        aspect-ratio: 1;
+        max-height: 100%;
+        max-width: 100%;
+        min-height: 1px;
+        min-width: 1px;
+        width: 100%;
+      }
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+
+      .wrapper {
+        display: grid;
+        padding: var(--gap);
+      }
+
+      .photo {
+        background: #444;
+        border: 1px solid white;
+        box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9);
+      }
+
+      .aspect3to4 {
+        aspect-ratio: 3 / 4;
+        /* aspect-ratio: 4 / 3; */
+        /* aspect-ratio: 1/2; */
+      }
+
+      .aspect4to3 {
+        aspect-ratio: 4 / 3;
+        /* aspect-ratio: 1/2; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid inner">
+      <!--
+      <div class="grid">
+        <div class="photo aspect4to3"></div>
+
+        <div class="photo aspect3to4"></div>
+      </div>
+      <div class="grid">
+        <div class="photo aspect3to4"></div>
+
+        <div class="photo aspect4to3"></div>
+      </div>
+      -->
+    </div>
+  </body>
+</html>
