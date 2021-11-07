@@ -16,6 +16,7 @@
         justify-content: center;
         --gap: 10px;
         --gap: 0px;
+        --gap: 3vmin;
         padding: var(--gap);
         /* padding: 20px; */
       }
@@ -23,6 +24,7 @@
       .grid {
         box-sizing: border-box;
         display: grid;
+        gap: var(--gap);
       }
 
       img {
@@ -37,6 +39,7 @@
 
       .photo {
         background-size: cover;
+        box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9);
       }
 
       .aspect3to4 {

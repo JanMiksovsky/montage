@@ -5,7 +5,7 @@ photos. This will either be fixed (whatever's on disk) or shuffled.
 
 For each photo folder, we create a "deck" of photos. Each deck is an array that we'll use as a queue, drawing from the top (front) of the deck array.
 
-      decks = arrays ${photos}
+      decks = edgeArrays ${photos}
 
 From each deck, we'll draw a hand of 4-6 photos. For folders with less than 4 photos, the hand will be empty (null).
 
@@ -13,14 +13,18 @@ From each deck, we'll draw a hand of 4-6 photos. For folders with less than 4 ph
 
 Read the EXIF metadata we care about
 
-      photoData = map hands, exif
+      exifData = map hands, exif
 
 Come up with a good abstract layout for the photos
 
-      layouts = map photoData, makeLayout
+      layouts = map exifData, makeLayout
 
 Transform the abstract layout to data necessary for rendering
 
-      result = map layouts, makeCollage
+      collages = map layouts, makeCollage
+
+Add each folder's name and the photo date range to the collage so that we can show the information card alongside the collage
+
+      result = addMetaData collages
 
 Then we visit this graph. It's already in random order, so we can just do any traversal (e.g., depth-first). Each non-null value will be the complete data necessary to render the collage as HTML. (The empty hands represented by null values are ignored.)

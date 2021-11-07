@@ -1,4 +1,4 @@
-# arrays(graph)
+# edgeArrays(graph)
 
 Converts a graph of values to one in which interior nodes one step from the edge have their values placed in an array.
 
@@ -11,7 +11,7 @@ fixture:
     key1: "b1"
     key2: "b2"
   c: "c1" # Will be dropped
-actual = arrays(fixture): ""
+actual = edgeArrays(fixture): ""
 expected:
   a:
     - "a1"

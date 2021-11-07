@@ -2,8 +2,9 @@
 export default async function* gen() {
   while (true) {
     const collages = await this.graph.get("collages");
-    for await (const key of collages) {
-      const collage = await collages.get(key);
+    const traversal = ExplorableGraph.traverse(collages);
+    for await (const key of traversal) {
+      const collage = await traversal.get(key);
       if (collage) {
         yield collage;
       }
