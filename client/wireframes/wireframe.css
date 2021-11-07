@@ -33,7 +33,6 @@ body {
   font-size: 14px;
   height: 100%;
   margin: 0;
-  padding: var(--gap);
   align-content: center;
   display: grid;
   justify-items: center;
@@ -54,12 +53,24 @@ body {
   width: 100%;
 }
 
+#main,
 .photoGrid {
   display: grid;
   max-height: 100%;
   min-height: 0;
   /* Without width, Safari won't restore grid height after window resize. */
   width: 100%;
+}
+
+#main {
+  padding: var(--gap);
+}
+
+/* We only need to handle templates up to 6 levels deep. */
+#main > .photoGrid,
+#main > .photoGrid > .photoGrid > .photoGrid,
+#main > .photoGrid > .photoGrid > .photoGrid > .photoGrid > .photoGrid {
+  grid-auto-flow: column;
 }
 
 .wireframe {
