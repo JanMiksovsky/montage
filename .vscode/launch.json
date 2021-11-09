@@ -17,6 +17,15 @@
         "min",
         "${workspaceFolder}/test/**/*.tests.js"
       ]
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "serve",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/eg/eg.js",
+      "cwd": "${workspaceFolder}/src",
+      "args": ["serve"]
     }
   ]
 }

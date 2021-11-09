@@ -3,7 +3,7 @@ date: February 2013
 aspectRatio: 24/25
 gap: 2
 photos:
-  - - photo: ../client/samples/Big White/Big White 001.JPG
-    - photo: ../client/samples/Big White/Big White 024.JPG
-  - - photo: ../client/samples/Big White/Big White 004.JPG
-    - photo: ../client/samples/Big White/Big White 027.JPG
+  - - photo: samples/Big White/Big White 001.JPG
+    - photo: samples/Big White/Big White 024.JPG
+  - - photo: samples/Big White/Big White 004.JPG
+    - photo: samples/Big White/Big White 027.JPG
