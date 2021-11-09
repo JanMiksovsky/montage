@@ -1,0 +1,11 @@
+<div class="photoGrid">
+{{#each this}}
+  {{#if photo}}
+  <div class="photo">
+    <img src="{{photo}}">
+  </div>
+  {{else}}
+  {{> photoGrid this}}
+  {{/if}}
+{{/each}}
+</div>
