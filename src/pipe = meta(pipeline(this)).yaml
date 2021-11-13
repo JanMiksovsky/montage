@@ -1,0 +1,6 @@
+# Start with sample photos in `selected folder
+- context%selected
+
+- mapTypes(it, '.jpg', '.json', context%addExif)
+
+- (context%makeCollage)(it)
