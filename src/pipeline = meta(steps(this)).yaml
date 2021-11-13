@@ -1,6 +1,14 @@
 # Start with sample photos in `selected folder
 - context%selected
 
-- mapTypes(it, '.jpg', '.json', context%addExif)
+# We can create a collage layout based just on the photos' EXIF metadata.
+- mapTypes(it, '.jpg', '.yaml', context%exif)
 
+# Extract just the metadata we need, in the format we want.
+- map it, context%reduceMetadata
+
+# Consolidate the individual photo metadata files into a single photos.yaml.
+- (context%groupPhotos)(it)
+
+# Choose a collage layout and identify the date range.
 - (context%makeCollage)(it)
