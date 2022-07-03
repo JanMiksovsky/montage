@@ -23,7 +23,7 @@
       "request": "launch",
       "name": "serve",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/eg/eg.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/cli.js",
       "cwd": "${workspaceFolder}/src",
       "args": ["serve"]
     }

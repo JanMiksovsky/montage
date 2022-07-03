@@ -61,12 +61,19 @@ function pickTemplate(photos) {
     height: 300,
     width: 400,
   };
-  const aspects = photos.map((photo) => photo.aspect);
+  const aspects = photos.map((photo) => 1 / photo.aspect);
   // Use a deterministic scoring function to pick a template -- no randomness.
+  // const weights = {
+  //   areaCovered: 1,
+  //   smallestPhoto: 0,
+  //   random: 0,
+  // };
+  // Use a set of balanced weights to score possible layouts.
   const weights = {
-    areaCovered: 1,
-    smallestPhoto: 0,
-    random: 0,
+    areaCovered: 0.05,
+    smallestPhoto: 0.4,
+    random: 0.45,
+    symmetry: 0.1,
   };
   const padding = 0;
   const template = LayoutSelector.bestTemplateForAspects(

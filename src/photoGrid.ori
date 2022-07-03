@@ -1,0 +1,12 @@
+<div class="photoGrid">
+{{#map .}}
+  {{#if photo}}
+    <div class="photo">
+      <img src="{{photo}}">
+    </div>
+  {{/if}}
+  {{#unless photo}}
+    {{ photoGrid.ori .}}
+  {{/if}}
+{{/map}}
+</div>

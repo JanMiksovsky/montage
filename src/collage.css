@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "Avenir Next";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../resources/fonts/Avenir Next.eot?iefix") format("eot");
+}
+
+@font-face {
+  font-family: "Avenir Next";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../resources/fonts/Avenir Next.eot?iefix");
+  src: url("../resources/fonts/Avenir Next.woff") format("woff"),
+    url("../resources/fonts/46cf1067-688d-4aab-b0f7-bd942af6efd8.ttf")
+      format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  --gap: 0px;
+  background-color: black;
+  background-image: url(../resources/blackFelt.jpg);
+  background-size: cover;
+  color: white;
+  font-family: "Avenir Next", Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0;
+  align-content: center;
+  display: grid;
+  justify-items: center;
+}
+
+.aspectGrid {
+  align-content: space-around;
+  display: grid;
+  justify-items: center;
+  max-height: 100%;
+  min-height: 0;
+  width: 100%;
+}
+
+.aspectGrid > * {
+  max-height: 100%;
+  min-height: 0;
+  width: 100%;
+}
+
+#main,
+.photoGrid {
+  display: grid;
+  max-height: 100%;
+  min-height: 0;
+  /* Without width, Safari won't restore grid height after window resize. */
+  width: 100%;
+}
+
+#main {
+  padding: var(--gap);
+}
+
+/* We only need to handle templates up to 6 levels deep. */
+#main > .photoGrid,
+#main > .photoGrid > .photoGrid > .photoGrid,
+#main > .photoGrid > .photoGrid > .photoGrid > .photoGrid > .photoGrid {
+  grid-auto-flow: column;
+}
+
+.wireframe {
+  background: darkgray;
+  border: 2px solid white;
+  padding: var(--gap);
+}
+
+img {
+  box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9);
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.photo {
+  padding: var(--gap);
+}

@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{{title}} – {{date}}</title>
-    <link rel="stylesheet" href="wireframes/wireframe.css" />
+    <link rel="stylesheet" href="collage.css" />
   </head>
   <body>
     <div id="main" style="aspect-ratio: {{aspect}}; --gap: {{gap}}vmin">
-      {{> photoGrid photos }}
+      {{ photoGrid.ori photos }}
     </div>
   </body>
 </html>
