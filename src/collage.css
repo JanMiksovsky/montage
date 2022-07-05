@@ -27,6 +27,7 @@ body {
   --gap: 0px;
   background-color: black;
   background-image: url(../resources/blackFelt.jpg);
+  background-position: center center;
   background-size: cover;
   color: white;
   font-family: "Avenir Next", Avenir, Helvetica, Arial, sans-serif;
@@ -63,6 +64,7 @@ body {
 }
 
 #main {
+  justify-items: center;
   padding: var(--gap);
 }
 
@@ -80,7 +82,7 @@ body {
 }
 
 img {
-  box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9);
+  /* box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9); */
   display: block;
   max-height: 100%;
   max-width: 100%;

@@ -1,12 +1,12 @@
-<div class="photoGrid">
-{{#map .}}
-  {{#if photo}}
-    <div class="photo">
-      <img src="{{photo}}">
-    </div>
-  {{/if}}
-  {{#unless photo}}
-    {{ photoGrid.ori .}}
-  {{/if}}
-{{/map}}
+{{#if ./photo}}
+<div class="photo">
+  <img src="{{./photo}}">
 </div>
+{{/if}}
+{{#if ./items}}
+  <div class="photoGrid" style="aspect-ratio: {{./aspect}}">
+    {{#map ./items}}
+      {{ photoGrid.ori . }}
+    {{/map}}
+  </div>
+{{/if}}

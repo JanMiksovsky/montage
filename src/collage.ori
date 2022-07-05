@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="collage.css" />
   </head>
   <body>
-    <div id="main" style="aspect-ratio: {{aspect}}; --gap: {{gap}}vmin">
-      {{ photoGrid.ori photos }}
+    <div id="main">
+      {{ photoGrid.ori . }}
     </div>
   </body>
 </html>

@@ -1,9 +1,12 @@
 title: Big White
 date: February 2013
 aspect: 24/25
-gap: 2
-photos:
-  - - photo: samples/Big White/Big White 001.JPG
-    - photo: samples/Big White/Big White 024.JPG
-  - - photo: samples/Big White/Big White 004.JPG
-    - photo: samples/Big White/Big White 027.JPG
+items:
+  - aspect: 0.480000768
+    items:
+      - photo: samples/Big White/Big White 001.JPG
+      - photo: samples/Big White/Big White 024.JPG
+  - aspect: 0.480000768
+    items:
+      - photo: samples/Big White/Big White 004.JPG
+      - photo: samples/Big White/Big White 027.JPG
