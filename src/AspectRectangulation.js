@@ -1,5 +1,3 @@
-import AspectLayout from "./AspectLayout.js";
-
 /**
  * A complete division of a rectangle into subrectangles. Rectangles which are
  * not subdivided are called "slots", and have a defined aspect ratio.
@@ -34,122 +32,37 @@ export default class AspectRectangulation {
   }
 
   /**
-   * The overall aspect ratio of the rectangulation (with no padding). We define
-   * aspect as the fraction of height / width (instead of the other way round),
-   * per the example of Wikipedia: http://en.wikipedia.org/wiki/Aspect_ratio.
+   * The overall aspect ratio of the rectangulation. We define aspect as the
+   * ratio of width / height to match the CSS aspect-ratio property
+   * (https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio).
    */
   aspect() {
-    const { aspect } = this.aspectFactors();
-    return aspect;
-  }
-
-  /**
-   * Return a pair of numbers representing the rectangulation's height expressed
-   * in terms of width:
-   *
-   * aspect: the basic aspect ratio determining height from width
-   * growth: the additional effect on the rectangulation's height of any padding.
-   *
-   * To get the final height including padding:
-   * height = aspect * width + (1 - growth) * padding
-   *
-   * The aspect ratio is standard, but the growth factor is novel. A rectangle
-   * with a fixed aspect ratio will change its height in response to a change in
-   * width. If padding is applied to the rectangle, to preserve the aspect ratio
-   * of the inner rectangle, the height of the outer rectangle will change as
-   * well. The growth factor reflects the degree to which changing the padding
-   * will change the height of the outer rectangle.
-   *
-   * A rectangle with an aspect ratio of 1 will have a growth factor of zero,
-   * because increasing the padding will not change the height of the outer
-   * rectangle. A rectangle with an aspect greater than 1 will have a negative
-   * growth factor: applying a padding of p will decrease the height of the
-   * outer rectangle by more than p. A rectangle with an aspect less than 1 will
-   * have a positive growth factor: applying a padding of p will decrease the
-   * height of the outer rectangle by less than p.
-   */
-  aspectFactors() {
-    const childFactors = this.children.map((child) =>
-      this.#childAspectFactors(child)
+    const childAspects = this.children.map((child) =>
+      child instanceof AspectRectangulation
+        ? child.aspect()
+        : // Singleton
+          child
     );
     const combinator =
       this.orientation === AspectRectangulation.orientation.HORIZONTAL
-        ? this.#combineAspectFactorsHorizontal
-        : this.#combineAspectFactorsVertical;
-    return childFactors.reduce(combinator);
+        ? this.#combineAspectsHorizontal
+        : this.#combineAspectsVertical;
+    return childAspects.reduce(combinator);
   }
 
   /**
-   * Calculate the { aspect, growth } factors for a child rectangulation.
-   *
-   * @param {AspectRectangulation|number} child
+   * Combine the aspect ratios for two rectangulations side by side.
    */
-  #childAspectFactors(child) {
-    if (child instanceof AspectRectangulation) {
-      return child.aspectFactors();
-    } else {
-      // Singleton
-      const aspect = child;
-      const growth = 1 - aspect;
-      return { aspect, growth };
-    }
+  #combineAspectsHorizontal(aspect1, aspect2) {
+    // This case is easy: we just sum both factors.
+    return aspect1 + aspect2;
   }
 
   /**
-   * Combine the aspect factors for two rectangulations side by side.
-   *
-   * This case is more complex than the horizontal one. We have two
-   * rectangulations with { aspect, growth } factors. Their heights can be
-   * calculated from their widths:
-   *
-   * h1 = a1w1 + g1  ( height is aspect * width + growth )
-   * h2 = a2w2 + g2
-   *
-   * We want to find the aspect and growth of the combination of these two
-   * rectangulations. Their combined width will be
-   *
-   * w = w1 + w2
-   *
-   * When finished, their height will be equal, so we can solve for widths:
-   *
-   * h1 = h2                           Set heights equal
-   * a1w1 + g1 = a2w2 + g2             Substitute from above
-   * a1w1 + g1 = a2(w - w1) + g2       Substitute for w2
-   * (a1 + a2)w1 = a2w + g2 - g1       Collect multiples of w1 on left side
-   * w1 = (a2w + g2 - g1)/(a1 + a2)    Solve for w1
-   *
-   * Now we can get the height (of either, which is the height of both):
-   *
-   * h = a1w1 + g1                     From above
-   *   = a1(a2w + g2 - g1)/(a1 + a2)   Use w1 we obtained above
-   *   = ((a1a2)/(a1+a2))w + a1(g2 - g1)/(a1 + a2) + g1
-   *
-   * Which gives us a way to calculate the height of the combined rectangulation
-   * in terms of width -- which is what the {aspect, growth} factors do. The
-   * aspect is the term before the w (width), and the rest is the growth factor.
-   *
-   * So:
-   *
-   * a = (a1a2)/(a1+a2)
-   * g = a1(g2 - g1)/(a1 + a2) + g1
+   * Combine the aspect ratios for two rectangulations stacked vertically.
    */
-  #combineAspectFactorsHorizontal(factors1, factors2) {
-    const { aspect: aspect1, growth: growth1 } = factors1;
-    const { aspect: aspect2, growth: growth2 } = factors2;
-    const aspect = (aspect1 * aspect2) / (aspect1 + aspect2);
-    const growth =
-      (aspect1 * (growth2 - growth1)) / (aspect1 + aspect2) + growth1;
-    return { aspect, growth };
-  }
-
-  /**
-   * Combine the aspect factors for two rectangulations stacked vertically.
-   * This case is easy: we just sum both factors.
-   */
-  #combineAspectFactorsVertical(factors1, factors2) {
-    const aspect = factors1.aspect + factors2.aspect;
-    const growth = factors1.growth + factors2.growth;
-    return { aspect, growth };
+  #combineAspectsVertical(aspect1, aspect2) {
+    return (aspect1 * aspect2) / (aspect1 + aspect2);
   }
 
   /**
@@ -200,85 +113,6 @@ export default class AspectRectangulation {
       inscribed.width = (bounds.height - growth * padding) / aspect;
     }
     return inscribed;
-  }
-
-  /**
-   * Create a layout that applies the rectangulation to the given bounds. Return
-   * a layout in absolute units. If interiorPaddingOnly is true, the padding
-   * will only be applied to interior slot edges; the default is false, applying
-   * padding to all slot edges.
-   */
-  layout(bounds, padding, interiorPaddingOnly) {
-    if (interiorPaddingOnly) {
-      bounds = this.#inflateRectangle(bounds, padding / 2);
-    }
-    if (padding == null) {
-      padding = 0;
-    }
-
-    let { inscribed, aspect, growth } = this.inscribe(bounds, padding);
-    // edge tracks the left or top edge of each child.
-    let edge =
-      this.orientation === AspectRectangulation.orientation.HORIZONTAL
-        ? inscribed.left
-        : inscribed.top;
-
-    // Calculate the slot(s) produced by each child.
-    const slotsForChildren = this.children.map((child) => {
-      const { aspect, growth } = this.#childAspectFactors(child);
-      let height, left, top, width;
-      switch (this.orientation) {
-        case AspectRectangulation.orientation.HORIZONTAL:
-          // Vertically constrain
-          height = inscribed.height;
-          left = edge;
-          width = (height - growth * padding) / aspect;
-          top = inscribed.top;
-          edge += width;
-          break;
-        case AspectRectangulation.orientation.VERTICAL:
-          // Horizontally constrain
-          left = inscribed.left;
-          width = inscribed.width;
-          height = width * aspect + growth * padding;
-          top = edge;
-          edge += height;
-      }
-
-      const slot = { height, left, top, width };
-
-      if (child instanceof AspectRectangulation) {
-        // Sub-rectanguluation: subdivide the slot.
-        const subLayout = child.layout(slot, padding);
-        return subLayout.slots;
-      } else {
-        // Actual slot: subtract out the desired padding.
-        return [this.#inflateRectangle(slot, -padding / 2)];
-      }
-    });
-
-    // Flatten to get the final list of slots.
-    const slots = [].concat(...slotsForChildren);
-
-    if (interiorPaddingOnly) {
-      // Deflate the inscribed rectangle to get back within original bounds.
-      inscribed = this.#inflateRectangle(inscribed, -padding / 2);
-    }
-
-    const layout = new AspectLayout(
-      slots,
-      aspect,
-      growth,
-      inscribed.height,
-      inscribed.width,
-      padding
-    );
-
-    // REVIEW: Why are we setting this?
-    // @ts-ignore
-    layout.rectangulation = this;
-
-    return layout;
   }
 
   /**

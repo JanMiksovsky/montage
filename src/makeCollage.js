@@ -1,3 +1,4 @@
+import AspectRectangulation from "./AspectRectangulation.js";
 import DateRangeFormatter from "./DateRangeFormatter.js";
 import LayoutSelector from "./LayoutSelector.js";
 import selectionData from "./selectionData.js";
@@ -16,16 +17,26 @@ export default async function makeCollage(selectionGraph, selectionPath) {
 
   const date = formatDateRange(selection);
 
-  const template = [
+  const template = new AspectRectangulation([
     [1, 1],
     [1, 1],
-  ];
+  ]);
+  const layout = applyRectangulation(template, imageRecords);
 
   return {
     description,
     date,
-    items: imageRecords,
+    items: layout,
   };
+}
+
+function applyRectangulation(rectangulation, records) {
+  const applied = rectangulation.children.map((child) =>
+    typeof child === "number"
+      ? records.shift()
+      : applyRectangulation(child, records)
+  );
+  return applied;
 }
 
 function formatDateRange(imageRecords) {
