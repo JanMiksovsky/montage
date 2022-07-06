@@ -66,56 +66,6 @@ export default class AspectRectangulation {
   }
 
   /**
-   * Inflate the given rectangle in all directions by the given delta.
-   */
-  #inflateRectangle(rectangle, delta) {
-    return {
-      height: rectangle.height + 2 * delta,
-      left: rectangle.left - delta,
-      top: rectangle.top - delta,
-      width: rectangle.width + 2 * delta,
-    };
-  }
-
-  /**
-   * Return the rectangle inscribing the rectangulation within the given bounds.
-   */
-  inscribe(bounds, padding) {
-    const { aspect, growth } = this.aspectFactors();
-    const inscribed = AspectRectangulation.inscribe(
-      bounds,
-      padding,
-      aspect,
-      growth
-    );
-    return { inscribed, aspect, growth };
-  }
-
-  /**
-   * Return the rectangle inscribing a rectangulation that has the given aspect
-   * and growth factors, and accommodating the desired padding. The rectangle
-   * will fit within the given bounds.
-   */
-  static inscribe(bounds, padding, aspect, growth) {
-    if (padding == null) {
-      padding = 0;
-    }
-    // Assume we're horizontally constrained.
-    const inscribed = {
-      height: bounds.width * aspect + growth * padding,
-      left: bounds.left,
-      top: bounds.top,
-      width: bounds.width,
-    };
-    if (inscribed.height > bounds.height) {
-      // Too tall; actually vertically constrained.
-      inscribed.height = bounds.height;
-      inscribed.width = (bounds.height - growth * padding) / aspect;
-    }
-    return inscribed;
-  }
-
-  /**
    * Returns true if this rectangulation mirrors another w.r.t. the given axis.
    * The criteria for one slot mirroring another are not precise, they simply
    * need to be very close in size.
