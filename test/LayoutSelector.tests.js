@@ -1,8 +1,8 @@
 import LayoutSelector from "../src/LayoutSelector.js";
 import assert from "./assert.js";
 
-describe.skip("LayoutSelector", () => {
-  it("best template for aspects", function () {
+describe("LayoutSelector", () => {
+  it.skip("best template for aspects", function () {
     const bounds = {
       height: 300,
       width: 400,

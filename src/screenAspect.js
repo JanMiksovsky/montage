@@ -1,6 +1,7 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph, shell } from "@explorablegraph/explorable";
 
-export default async function screenDimensions(displayInfo) {
+export default async function screenAspect() {
+  const displayInfo = await shell("system_profiler SPDisplaysDataType");
   const info = await ExplorableGraph.plain(ExplorableGraph.from(displayInfo));
   const resolution = findKey(info, "Resolution");
   if (!resolution) {
@@ -12,10 +13,8 @@ export default async function screenDimensions(displayInfo) {
     return null;
   }
   const { height, width } = match.groups;
-  return {
-    height: parseInt(height),
-    width: parseInt(width),
-  };
+  const aspect = width / height;
+  return aspect;
 }
 
 function findKey(obj, key) {
