@@ -1,6 +1,6 @@
-{{#if ./photo}}
+{{#if ./src}}
 <div class="photo">
-  <img src="{{./photo}}">
+  <img src="{{./src}}">
 </div>
 {{/if}}
 {{#if ./items}}

@@ -4,9 +4,9 @@ aspect: 2.0392131834
 items:
   - aspect: 0.7058831834
     items:
-      - photo: selected/Big White 001.JPG
+      - src: selected/Big White 001.JPG
       - aspect: 1.5
         items:
-          - photo: selected/Big White 004.JPG
-          - photo: selected/Big White 024.JPG
-  - photo: selected/Big White 027.JPG
+          - src: selected/Big White 004.JPG
+          - src: selected/Big White 024.JPG
+  - src: selected/Big White 027.JPG

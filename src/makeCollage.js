@@ -14,29 +14,38 @@ export default async function makeCollage(selectionGraph, selectionPath) {
     const { src, aspect } = imageRecord;
     return { src, aspect };
   });
+  const aspects = imageRecords.map((imageRecord) => imageRecord.aspect);
 
   const date = formatDateRange(selection);
 
-  const template = new AspectRectangulation([
-    [1, 1],
-    [1, 1],
-  ]);
-  const layout = applyRectangulation(template, imageRecords);
+  // const template = new AspectRectangulation([
+  //   [1, 1],
+  //   [1, 1],
+  // ]);
+  const template = new AspectRectangulation([[1, [1, 1]], 1]);
+  const concrete = template.replaceAspects(aspects);
+  const layout = applyRectangulation(concrete, imageRecords);
 
-  return {
-    description,
-    date,
-    items: layout,
-  };
+  return Object.assign(
+    {
+      description,
+      date,
+    },
+    layout
+  );
 }
 
 function applyRectangulation(rectangulation, records) {
-  const applied = rectangulation.children.map((child) =>
-    typeof child === "number"
-      ? records.shift()
-      : applyRectangulation(child, records)
+  const aspect = rectangulation.aspect();
+  const items = rectangulation.children.map((child) =>
+    child instanceof AspectRectangulation
+      ? applyRectangulation(child, records)
+      : records.shift()
   );
-  return applied;
+  return {
+    aspect,
+    items,
+  };
 }
 
 function formatDateRange(imageRecords) {

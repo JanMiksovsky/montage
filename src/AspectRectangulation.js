@@ -188,9 +188,9 @@ export default class AspectRectangulation {
    */
   #replaceAspects(rectangulation, aspects) {
     const replaced = rectangulation.children.map((child) =>
-      typeof child === "number"
-        ? aspects.shift()
-        : this.#replaceAspects(child, aspects)
+      child instanceof AspectRectangulation
+        ? this.#replaceAspects(child, aspects)
+        : aspects.shift()
     );
     return replaced;
   }
