@@ -1,54 +1,36 @@
 import DateRangeFormatter from "./DateRangeFormatter.js";
 import LayoutSelector from "./LayoutSelector.js";
+import selectionData from "./selectionData.js";
 
-export default async function makeCollage(graph) {
+export default async function makeCollage(selectionGraph, selectionPath) {
+  // Use the last part of the selection path as the collage description.
+  const pathParts = selectionPath.split("/");
+  const description = pathParts[pathParts.length - 1];
+
+  const selection = await selectionData(selectionGraph, selectionPath);
+
+  const imageRecords = selection.map((imageRecord) => {
+    const { src, aspect } = imageRecord;
+    return { src, aspect };
+  });
+
+  const date = formatDateRange(selection);
+
+  const template = [
+    [1, 1],
+    [1, 1],
+  ];
+
   return {
-    async *[Symbol.asyncIterator]() {
-      let hasPhotosYaml = false;
-      for await (const key of graph) {
-        if (key === "photos.yaml") {
-          hasPhotosYaml = true;
-        }
-        yield key;
-      }
-      if (hasPhotosYaml) {
-        yield "collage.yaml";
-      }
-    },
-
-    async get(key, ...rest) {
-      if (rest.length > 0 || key !== "collage.yaml") {
-        return await graph.get(key, ...rest);
-      } else {
-        // Return collage.yaml
-        const photos = await graph.get("photos.yaml");
-        return await collage(photos);
-      }
-    },
+    description,
+    date,
+    items: imageRecords,
   };
 }
 
-async function collage(photos) {
-  if (photos.length < 4) {
-    return undefined;
-  }
-
-  let dateRange = formatDateRange(photos);
-  const template = pickTemplate(photos);
-  const array = template.toArray();
-  const aspect = template.aspect();
-
-  return {
-    array,
-    aspect,
-    dateRange,
-    photos,
-  };
-}
-
-function formatDateRange(photos) {
+function formatDateRange(imageRecords) {
   // Get the minimum and maximum dates.
-  const dates = photos.map(({ date }) => date);
+  const dates = imageRecords.map(({ date }) => date);
   const minDate = new Date(Math.min(...dates));
   const maxDate = new Date(Math.max(...dates));
 

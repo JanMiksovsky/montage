@@ -1,17 +1,12 @@
 import exifParser from "exif-parser";
 
-// TODO: Feels weird to have this function deal with the name of the file.
-export default async function exif(buffer, sourceKey) {
+// Given a buffer containing image data, return the EXIF metadata.
+export default async function exif(buffer) {
   const parser = exifParser.create(buffer);
   parser.enableTagNames(true);
   parser.enableSimpleValues(true);
-  const result = await parser.parse();
+  const parsed = await parser.parse();
   // Convert an exif-parser result to a plain object.
-  const plain = Object.assign(
-    {
-      name: sourceKey,
-    },
-    result
-  );
+  const plain = Object.assign({}, parsed);
   return plain;
 }

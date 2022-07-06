@@ -1,8 +1,9 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import exif from "./exif.js";
 
-export default async (exifGraph) => {
-  const exif = await ExplorableGraph.plain(exifGraph);
-  const { name, imageSize, tags } = exif;
+// Given an image buffer, return just the metadata needed by the collage.
+export default async function imageData(buffer) {
+  const exifData = await exif(buffer);
+  const { imageSize, tags } = exifData;
   const { height, width } = imageSize;
 
   const { Orientation: orientation } = tags;
@@ -27,10 +28,7 @@ export default async (exifGraph) => {
   }
 
   return {
-    name,
     aspect,
     date,
-    height,
-    width,
   };
-};
+}
