@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    {{#if base}}
+    <base href="{{base}}" />
+    {{/if}}
     <title>{{title}} – {{date}}</title>
     <link rel="stylesheet" href="collage.css" />
   </head>
