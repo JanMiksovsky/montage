@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  --gap: 0px;
+  --gap: 1rem;
   background-color: black;
   background-image: url(../resources/blackFelt.jpg);
   background-position: center center;
@@ -70,12 +70,6 @@ body {
   padding: var(--gap);
 }
 
-.wireframe {
-  background: darkgray;
-  border: 2px solid white;
-  padding: var(--gap);
-}
-
 img {
   /* box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9); */
   display: block;
@@ -83,6 +77,7 @@ img {
   max-width: 100%;
 }
 
-.photo {
-  padding: var(--gap);
+.image {
+  background-size: cover;
+  margin: var(--gap);
 }

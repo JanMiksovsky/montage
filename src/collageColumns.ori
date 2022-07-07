@@ -1,5 +1,6 @@
 {{#if ./src}}
-<img src="{{./src}}">
+<div class="image" style="background-image: url('{{./src}}')">
+</div>
 {{/if}}
 {{#if ./items}}
   <div class="photoGrid" style="grid-template-columns: {{ gridProportions ./items, 'columns' }}">
