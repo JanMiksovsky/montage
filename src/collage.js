@@ -3,12 +3,12 @@ import DateRangeFormatter from "./DateRangeFormatter.js";
 import LayoutSelector from "./LayoutSelector.js";
 import selectionData from "./selectionData.js";
 
-export default async function makeCollage(selectionGraph, selectionPath) {
+export default async function collage(imagesGraph) {
   // Use the last part of the selection path as the collage description.
-  const pathParts = selectionPath.split("/");
-  const description = pathParts[pathParts.length - 1];
+  // const pathParts = selectionPath.split("/");
+  // const description = pathParts[pathParts.length - 1];
 
-  const selection = await selectionData(selectionGraph, selectionPath);
+  const selection = await selectionData(imagesGraph);
 
   const imageRecords = selection.map((imageRecord) => {
     const { src, aspect } = imageRecord;
@@ -29,7 +29,7 @@ export default async function makeCollage(selectionGraph, selectionPath) {
 
   return Object.assign(
     {
-      description,
+      // description,
       date,
     },
     layout

@@ -1,0 +1,5 @@
+import { ExplorableGraph } from "@explorablegraph/explorable";
+
+export default async function (graph) {
+  return ExplorableGraph.keys(graph);
+}

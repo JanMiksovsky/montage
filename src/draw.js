@@ -1,14 +1,11 @@
-export default function draw(array, n = 1) {
-  if (array.length < n) {
-    // Not enough values.
-    return null;
-  }
+import { shuffle } from "@explorablegraph/explorable";
+import images from "./images.js";
+import take from "./take.js";
 
-  // Take the first n values from the array.
-  const values = array.slice(0, n);
-
-  // Remove those first n values from the array.
-  array.splice(0, n);
-
-  return values;
+// Pick a random set of 4–6 images from the graph.
+export default async function draw(graph) {
+  const shuffled = await shuffle(images(graph));
+  // Pick a number between 4 and 6.
+  const count = 4 + Math.floor(Math.random() * 3);
+  return take(shuffled, count);
 }
