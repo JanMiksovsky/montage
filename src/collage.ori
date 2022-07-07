@@ -7,7 +7,7 @@
     <base href="{{base}}" />
     {{/if}}
     <title>{{title}} – {{date}}</title>
-    <link rel="stylesheet" href="collage.css" />
+    <link rel="stylesheet" href="/collage.css" />
   </head>
   <body>
     <div id="main" style="aspect-ratio: {{aspect}}">
