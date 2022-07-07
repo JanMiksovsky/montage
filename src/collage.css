@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  --gap: 1rem;
+  --gap: 2vmin;
   background-color: black;
   background-image: url(../resources/blackFelt.jpg);
   background-position: center center;

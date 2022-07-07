@@ -8,6 +8,7 @@
     {{/if}}
     <title>{{title}} – {{date}}</title>
     <link rel="stylesheet" href="/collage.css" />
+    <script type="module" src="/slideshow.js"></script>
   </head>
   <body>
     <div id="main" style="aspect-ratio: {{aspect}}">
