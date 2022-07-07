@@ -1,0 +1,16 @@
+description: selected
+date: February 2013
+aspect: 1.8848039215686274
+items:
+  - src: selected/Big White 001.JPG
+    aspect: 1.3333333333333333
+  - aspect: 0.551470588235294
+    items:
+      - src: selected/Big White 004.JPG
+        aspect: 0.75
+      - aspect: 2.083333333333333
+        items:
+          - src: selected/Big White 024.JPG
+            aspect: 0.75
+          - src: selected/Big White 027.JPG
+            aspect: 1.3333333333333333

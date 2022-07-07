@@ -22,7 +22,8 @@ export default async function makeCollage(selectionGraph, selectionPath) {
   //   [1, 1],
   //   [1, 1],
   // ]);
-  const template = new AspectRectangulation([[1, [1, 1]], 1]);
+  // const template = new AspectRectangulation([[1, 1], 1]);
+  const template = LayoutSelector.randomTemplateForAspects(aspects);
   const concrete = template.replaceAspects(aspects);
   const layout = applyRectangulation(concrete, imageRecords);
 

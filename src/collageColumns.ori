@@ -1,0 +1,10 @@
+{{#if ./src}}
+<img src="{{./src}}">
+{{/if}}
+{{#if ./items}}
+  <div class="photoGrid" style="grid-template-columns: {{ gridProportions ./items, 'columns' }}">
+    {{#map ./items}}
+      {{ collageRows.ori . }}
+    {{/map}}
+  </div>
+{{/if}}

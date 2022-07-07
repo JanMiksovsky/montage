@@ -99,6 +99,14 @@ export default class LayoutSelector {
   //   template = possibleTemplates[ index ]
   //   rectangulation = new AspectRectangulation template
   //   rectangulation.replaceAspects aspects
+  static randomTemplateForAspects(aspects) {
+    const slotCount = aspects.length;
+    const possibleTemplates = templates[slotCount];
+    const index = Math.floor(Math.random() * possibleTemplates.length);
+    const template = possibleTemplates[index];
+    const rectangulation = new AspectRectangulation(template);
+    return rectangulation.replaceAspects(aspects);
+  }
 
   /**
    * Use a set of balanced weights to score possible layouts.
