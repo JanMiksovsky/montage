@@ -43,10 +43,14 @@ export default async function collage(imagesGraph) {
   );
   const layout = applyRectangulation(rectangulation, imageRecords);
 
+  // Gap is a random value between 1.0 and 3.0.
+  const gap = 1 + Math.floor(Math.random() * 21) / 10;
+
   return Object.assign(
     {
       // description,
       date,
+      gap,
     },
     layout
   );

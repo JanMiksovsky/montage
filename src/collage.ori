@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/collage.css" />
     <script type="module" src="/slideshow.js"></script>
   </head>
-  <body>
+  <body style="--gap: {{gap}}vmin">
     <div id="background"></div>
     <div id="main" style="aspect-ratio: {{aspect}}" tabindex="0">
       {{ collageColumns.ori . }}

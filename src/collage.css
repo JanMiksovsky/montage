@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  --gap: 2vmin;
+  --gap: 0;
   background-color: black;
   color: white;
   font-family: "Avenir Next", Avenir, Helvetica, Arial, sans-serif;
