@@ -40,22 +40,29 @@ describe("AspectRectangulation", () => {
 
   it("aspect ratio horizontal", () => {
     const rectangulation = new AspectRectangulation(example1by2);
-    assert.equal(rectangulation.aspect(), 2);
+    assert.equal(rectangulation.aspect, 2);
   });
 
   it("aspect ratio vertical", () => {
     const rectangulation = new AspectRectangulation(example2by1);
-    assert.equal(rectangulation.aspect(), 0.5);
+    assert.equal(rectangulation.aspect, 0.5);
   });
 
   it("aspect ratio complex", () => {
     const rectangulation = new AspectRectangulation(exampleComplex);
-    assert.approximately(rectangulation.aspect(), 5 / 3, 0.00001);
+    assert.approximately(rectangulation.aspect, 5 / 3, 0.00001);
   });
 
   it("to array", () => {
     const rectangulation = new AspectRectangulation(exampleComplex);
     assert.deepEqual(rectangulation.toArray(), exampleComplex);
+  });
+
+  it("area covered by rectangulation", () => {
+    const fixture = new AspectRectangulation(example1by2);
+    assert.equal(fixture.areaCovered(1), 0.5);
+    assert.equal(fixture.areaCovered(2), 1);
+    assert.equal(fixture.areaCovered(4), 0.5);
   });
 
   it("replace aspects", () => {
@@ -109,5 +116,5 @@ describe("AspectRectangulation", () => {
 
 function symmetric(template) {
   const rectangulation = new AspectRectangulation(template);
-  return rectangulation.symmetric();
+  return rectangulation.symmetric;
 }

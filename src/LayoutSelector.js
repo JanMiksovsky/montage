@@ -18,59 +18,52 @@ import templates from "./templates.js";
  */
 export default class LayoutSelector {
   /**
-   * Return a number between 0 and 1 representing the fraction of the given
-   * bounds which will be covered by the layout. (1 = completely covered)
+   * Return the "best" rectangulation for the given set of image aspect ratios.
+   * Use the supplied weights to score the possible layouts. Weights should sum
+   * to 1.
    */
-  static #areaCoveredFactor(layout, bounds) {
-    const layoutArea = layout.width * layout.height;
-    const boundsArea = bounds.width * bounds.height;
-    return layoutArea / boundsArea;
-  }
-
-  /**
-   * Pick the "best" template for the given set of aspect ratios. Use the
-   * supplied weights to score the possible layouts. Weights should sum to 1.
-   */
-  static bestTemplateForAspects(bounds, aspects, padding = 0, weights) {
-    const slotCount = aspects.length;
-    const possibleTemplates = templates[slotCount];
+  static bestRectangulation(boundsAspect, imageAspects, weights) {
+    const imageCount = imageAspects.length;
+    const possibleTemplates = templates[imageCount];
     const rectangulations = possibleTemplates.map((template) => {
       const templateRectangulation = new AspectRectangulation(template);
-      return templateRectangulation.replaceAspects(aspects);
+      return templateRectangulation.replaceAspects(imageAspects);
     });
-    const layouts = rectangulations.map((rectangulation) =>
-      rectangulation.layout(bounds, padding, true)
+
+    const scores = rectangulations.map((rectangulation) =>
+      this.#layoutScore(rectangulation, boundsAspect, weights)
     );
-    // Pick the layout with the best score.
-    const scores = layouts.map((layout) =>
-      this.#layoutScore(layout, bounds, weights)
-    );
-    const bestTemplateIndex = this.#largestItemIndex(scores);
-    return rectangulations[bestTemplateIndex];
+
+    // Pick the rectangulation with the best score.
+    let maxScore = 0;
+    let bestRectangulationIndex = 0;
+    for (let index = 0; index < scores.length; index++) {
+      const score = scores[index];
+      if (score > maxScore) {
+        maxScore = score;
+        bestRectangulationIndex = index;
+      }
+    }
+
+    return rectangulations[bestRectangulationIndex];
   }
 
   /**
-   * Return the index of the largest item.
+   * Return a score for the given rectangulation, applying the given weights.
    */
-  static #largestItemIndex(items) {
-    const maxItem = Math.max.apply(Math, items);
-    return items.indexOf(maxItem);
-  }
-
-  /**
-   * Return a score for the given layout, applying the given weights.
-   */
-  static #layoutScore(layout, bounds, weights) {
+  static #layoutScore(rectangulation, boundsAspect, weights) {
     const scores = {
-      areaCovered: this.#areaCoveredFactor(layout, bounds),
-      smallestPhoto: this.#smallestPhotoFactor(layout, bounds),
-      symmetry: this.#symmetryFactor(layout),
+      areaCovered: rectangulation.areaCovered(boundsAspect),
       random: Math.random(),
+      // smallestPhoto: this.#smallestPhotoFactor(rectangulation, boundsAspect),
+      smallestPhoto: 0,
+      symmetry: rectangulation.symmetric ? 1 : 0,
     };
     const totalScore =
       weights.areaCovered * scores.areaCovered +
+      weights.random * scores.random +
       weights.smallestPhoto * scores.smallestPhoto +
-      weights.random * scores.random;
+      weights.symmetry * scores.symmetry;
     return totalScore;
   }
 
@@ -88,17 +81,6 @@ export default class LayoutSelector {
     return this.selectLayoutForAspects(bounds, photoAspects, padding);
   }
 
-  // @randomLayoutForAspects: ( bounds, aspects, padding ) ->
-  //   rectangulation = @randomTemplateForAspects aspects
-  //   rectangulation.layout bounds, padding
-
-  // @randomTemplateForAspects: ( aspects ) ->
-  //   slotCount = aspects.length
-  //   possibleTemplates = @templates[ slotCount ]
-  //   index = Math.floor Math.random() * possibleTemplates.length
-  //   template = possibleTemplates[ index ]
-  //   rectangulation = new AspectRectangulation template
-  //   rectangulation.replaceAspects aspects
   static randomTemplateForAspects(aspects) {
     const slotCount = aspects.length;
     const possibleTemplates = templates[slotCount];
@@ -118,7 +100,7 @@ export default class LayoutSelector {
       random: 0.45,
       symmetry: 0.1,
     };
-    return this.bestTemplateForAspects(bounds, aspects, padding, weights);
+    return this.bestRectangulation(bounds, aspects, padding, weights);
   }
 
   /**
@@ -144,12 +126,5 @@ export default class LayoutSelector {
   static #smallestItemIndex(items) {
     const smallestItem = Math.min.apply(Math, items);
     return items.indexOf(smallestItem);
-  }
-
-  /**
-   * Return 1 if the layout is symmetric, 0 if assymetric.
-   */
-  static #symmetryFactor(layout) {
-    return layout.rectangulation?.symmetric() ? 1 : 0;
   }
 }

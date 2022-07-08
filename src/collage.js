@@ -1,6 +1,7 @@
 import AspectRectangulation from "./AspectRectangulation.js";
 import DateRangeFormatter from "./DateRangeFormatter.js";
 import LayoutSelector from "./LayoutSelector.js";
+import screenAspect from "./screenAspect.js";
 import selectionData from "./selectionData.js";
 
 export default async function collage(imagesGraph) {
@@ -23,9 +24,22 @@ export default async function collage(imagesGraph) {
   //   [1, 1],
   // ]);
   // const template = new AspectRectangulation([[1, 1], 1]);
-  const template = LayoutSelector.randomTemplateForAspects(aspects);
-  const concrete = template.replaceAspects(aspects);
-  const layout = applyRectangulation(concrete, imageRecords);
+  // const template = LayoutSelector.randomTemplateForAspects(aspects);
+  const boundsAspect = await screenAspect();
+  const weights = {
+    // areaCovered: 0.05,
+    areaCovered: 0.5,
+    // smallestPhoto: 0.45,
+    smallestPhoto: 0,
+    random: 0.45,
+    symmetry: 0.05,
+  };
+  const rectangulation = LayoutSelector.bestRectangulation(
+    boundsAspect,
+    aspects,
+    weights
+  );
+  const layout = applyRectangulation(rectangulation, imageRecords);
 
   return Object.assign(
     {
@@ -37,7 +51,7 @@ export default async function collage(imagesGraph) {
 }
 
 function applyRectangulation(rectangulation, records) {
-  const aspect = rectangulation.aspect();
+  const aspect = rectangulation.aspect;
   const items = rectangulation.children.map((child) =>
     child instanceof AspectRectangulation
       ? applyRectangulation(child, records)
@@ -79,7 +93,7 @@ function pickTemplate(photos) {
     symmetry: 0.1,
   };
   const padding = 0;
-  const template = LayoutSelector.bestTemplateForAspects(
+  const template = LayoutSelector.bestRectangulation(
     bounds,
     aspects,
     padding,

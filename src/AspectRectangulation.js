@@ -32,14 +32,34 @@ export default class AspectRectangulation {
   }
 
   /**
+   * If this rectangulation is placed within a bounding rectangle and made as
+   * large as possible, what fraction of the bounding rectangle would it cover?
+   * This will be a number less than or equal to 1 (completely covered).
+   *
+   * Example: If a rectangle with a 1/1 aspect is placed inside a bounding
+   * rectangle with a 2/1 or 1/2 aspect, the rectangle would cover half the
+   * bounding rectangle.
+   *
+   * @param {number} boundsAspect
+   */
+  areaCovered(boundsAspect) {
+    const aspect = this.aspect;
+    return aspect <= boundsAspect
+      ? this.aspect / boundsAspect
+      : boundsAspect / this.aspect;
+  }
+
+  /**
    * The overall aspect ratio of the rectangulation. We define aspect as the
    * ratio of width / height to match the CSS aspect-ratio property
    * (https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio).
+   *
+   * @type {number}
    */
-  aspect() {
+  get aspect() {
     const childAspects = this.children.map((child) =>
       child instanceof AspectRectangulation
-        ? child.aspect()
+        ? child.aspect
         : // Singleton
           child
     );
@@ -157,7 +177,7 @@ export default class AspectRectangulation {
    * is twice as much work as actually needs to be done, since if the first half
    * of the rectangulation mirrors itself, so does the second.
    */
-  symmetric() {
+  get symmetric() {
     let symmetricAlongOrientation = this.mirrors(this, this.orientation);
     if (
       symmetricAlongOrientation &&
