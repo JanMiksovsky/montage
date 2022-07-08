@@ -27,12 +27,14 @@ export default async function collage(imagesGraph) {
   // const template = LayoutSelector.randomTemplateForAspects(aspects);
   const boundsAspect = await screenAspect();
   const weights = {
-    // areaCovered: 0.05,
-    areaCovered: 0.5,
-    // smallestPhoto: 0.45,
-    smallestPhoto: 0,
-    random: 0.45,
-    symmetry: 0.05,
+    areaCovered: 0,
+    smallestItem: 0.8,
+    random: 0.2,
+    symmetry: 0,
+    // areaCovered: 0,
+    // smallestItem: 1,
+    // random: 0,
+    // symmetry: 0,
   };
   const rectangulation = LayoutSelector.bestRectangulation(
     boundsAspect,
@@ -82,13 +84,13 @@ function pickTemplate(photos) {
   // Use a deterministic scoring function to pick a template -- no randomness.
   // const weights = {
   //   areaCovered: 1,
-  //   smallestPhoto: 0,
+  //   smallestItem: 0,
   //   random: 0,
   // };
   // Use a set of balanced weights to score possible layouts.
   const weights = {
     areaCovered: 0.05,
-    smallestPhoto: 0.4,
+    smallestItem: 0.4,
     random: 0.45,
     symmetry: 0.1,
   };

@@ -43,10 +43,19 @@ export default class AspectRectangulation {
    * @param {number} boundsAspect
    */
   areaCovered(boundsAspect) {
-    const aspect = this.aspect;
+    return this.areaCoveredByAspect(this.aspect, boundsAspect);
+  }
+
+  areaCoveredByAspect(aspect, boundsAspect) {
     return aspect <= boundsAspect
-      ? this.aspect / boundsAspect
-      : boundsAspect / this.aspect;
+      ? aspect / boundsAspect
+      : boundsAspect / aspect;
+  }
+
+  areaCoveredBySmallestItem(boundsAspect) {
+    return (
+      this.fractionCoveredBySmallestItem() * this.areaCovered(boundsAspect)
+    );
   }
 
   /**
@@ -83,6 +92,21 @@ export default class AspectRectangulation {
    */
   #combineAspectsVertical(aspect1, aspect2) {
     return (aspect1 * aspect2) / (aspect1 + aspect2);
+  }
+
+  // What fraction of this rectangulation is covered by its smallest item?
+  fractionCoveredBySmallestItem() {
+    const aspect = this.aspect;
+    const childResults = this.children.map((child) => {
+      if (child instanceof AspectRectangulation) {
+        const childArea = this.areaCoveredByAspect(child.aspect, aspect);
+        const fraction = child.fractionCoveredBySmallestItem();
+        return fraction * childArea;
+      } else {
+        return this.areaCoveredByAspect(child, aspect);
+      }
+    });
+    return Math.min(...childResults);
   }
 
   /**

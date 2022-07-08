@@ -55,14 +55,13 @@ export default class LayoutSelector {
     const scores = {
       areaCovered: rectangulation.areaCovered(boundsAspect),
       random: Math.random(),
-      // smallestPhoto: this.#smallestPhotoFactor(rectangulation, boundsAspect),
-      smallestPhoto: 0,
+      smallestItem: rectangulation.areaCoveredBySmallestItem(boundsAspect),
       symmetry: rectangulation.symmetric ? 1 : 0,
     };
     const totalScore =
       weights.areaCovered * scores.areaCovered +
       weights.random * scores.random +
-      weights.smallestPhoto * scores.smallestPhoto +
+      weights.smallestItem * scores.smallestItem +
       weights.symmetry * scores.symmetry;
     return totalScore;
   }
@@ -96,35 +95,10 @@ export default class LayoutSelector {
   static selectTemplateForAspects(bounds, aspects, padding) {
     const weights = {
       areaCovered: 0.05,
-      smallestPhoto: 0.4,
+      smallestItem: 0.4,
       random: 0.45,
       symmetry: 0.1,
     };
     return this.bestRectangulation(bounds, aspects, padding, weights);
-  }
-
-  /**
-   * Return a number between 0 and 1 representing the fraction of the given
-   * bounds which will be covered by the smallest photo in the layout. This is
-   * expressed as a portion of the available area divided by the number of slots.
-   * E.g., if the layout has six slots, a value of 1 indicates that the smallest
-   * photo consumes 1/6 of the available area — i.e., the maximum size for the
-   * smallest photo.
-   */
-  static #smallestPhotoFactor(layout, bounds) {
-    const photoAreas = layout.slots.map((slot) => slot.width * slot.height);
-    const smallestPhotoIndex = this.#smallestItemIndex(photoAreas);
-    const smallestPhotoArea = photoAreas[smallestPhotoIndex];
-    const boundsArea = bounds.width * bounds.height;
-    const maxSmallestPhotoArea = boundsArea / layout.slots.length;
-    return smallestPhotoArea / maxSmallestPhotoArea;
-  }
-
-  /**
-   * Return the index of the smallest item.
-   */
-  static #smallestItemIndex(items) {
-    const smallestItem = Math.min.apply(Math, items);
-    return items.indexOf(smallestItem);
   }
 }

@@ -9,7 +9,7 @@ describe("LayoutSelector", () => {
     const weights = {
       areaCovered: 1,
       random: 0,
-      smallestPhoto: 0,
+      smallestItem: 0,
       symmetry: 0,
     };
     const rectangulation = LayoutSelector.bestRectangulation(

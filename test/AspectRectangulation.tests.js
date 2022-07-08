@@ -65,6 +65,15 @@ describe("AspectRectangulation", () => {
     assert.equal(fixture.areaCovered(4), 0.5);
   });
 
+  it("fraction covered by smallest item", () => {
+    const fixture1 = new AspectRectangulation(example1by2);
+    assert.equal(fixture1.fractionCoveredBySmallestItem(), 0.5);
+
+    // The small square covers 1/16 of the rectangulation.
+    const fixture2 = new AspectRectangulation([3 / 4, [1 / 3, 1]]);
+    assert.equal(fixture2.fractionCoveredBySmallestItem(), 1 / 16);
+  });
+
   it("replace aspects", () => {
     const original = new AspectRectangulation(exampleComplex);
     const aspects = [4 / 3, 3 / 4, 4 / 3, 4 / 3];
