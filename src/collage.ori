@@ -11,7 +11,8 @@
     <script type="module" src="/slideshow.js"></script>
   </head>
   <body>
-    <div id="main" style="aspect-ratio: {{aspect}}">
+    <div id="background"></div>
+    <div id="main" style="aspect-ratio: {{aspect}}" tabindex="0">
       {{ collageColumns.ori . }}
     </div>
   </body>
