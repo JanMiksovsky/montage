@@ -5,10 +5,6 @@ import screenAspect from "./screenAspect.js";
 import selectionData from "./selectionData.js";
 
 export default async function collage(imagesGraph) {
-  // Use the last part of the selection path as the collage description.
-  // const pathParts = selectionPath.split("/");
-  // const description = pathParts[pathParts.length - 1];
-
   const selection = await selectionData(imagesGraph);
 
   const imageRecords = selection.map((imageRecord) => {
@@ -48,7 +44,6 @@ export default async function collage(imagesGraph) {
 
   return Object.assign(
     {
-      // description,
       date,
       gap,
     },

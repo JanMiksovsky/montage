@@ -28,8 +28,12 @@ async function* collageGenerator(graph) {
       const result = await collage(hand);
       // HACK: Would like to avoid using file system paths
       if (root && folder.path) {
-        const base = path.relative(root, folder.path) + "/";
-        result.base = base;
+        result.base = path.relative(root, folder.path) + "/";
+
+        // Use the last part of the path as the collage description.
+        // We need a better way to get the name of the graph.
+        const pathParts = folder.path.split("/");
+        result.description = pathParts[pathParts.length - 1];
       }
       yield result;
     }

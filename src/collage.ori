@@ -6,14 +6,28 @@
     {{#if base}}
     <base href="{{base}}" />
     {{/if}}
-    <title>{{title}} – {{date}}</title>
+    <title>{{description}}, {{date}}</title>
     <link rel="stylesheet" href="/collage.css" />
     <script type="module" src="/slideshow.js"></script>
   </head>
-  <body style="--gap: {{gap}}vmin">
+  <body style="--gap: {{gap}}vmin; --aspect: {{aspect}}">
     <div id="background"></div>
-    <div id="main" style="aspect-ratio: {{aspect}}" tabindex="0">
+    <div id="main">
       {{ collageColumns.ori . }}
+      <div class="GlassTile">
+        <div class="GlassTile_edge">
+          <div class="GlassTile_inner">
+            <div class="GlassTile_edgeGlow GlassTile_upperGlow"></div>
+            <div class="GlassTile_container">
+              <div class="GlassTile_content">
+                {{description}}, {{date}}      
+              </div>
+            </div>
+            <div class="GlassTile_edgeGlow GlassTile_lowerGlow"></div>
+          </div>
+        </div>
+        <div class="GlassTile_reflection"></div>
+      </div>
     </div>
   </body>
 </html>
