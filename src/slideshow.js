@@ -1,4 +1,5 @@
-const slideshowIntervalSeconds = 5;
+// const slideshowIntervalSeconds = 5;
+const slideshowIntervalSeconds = 60;
 
 const slideshow = window.location.pathname === "/slideshow.html";
 
@@ -10,11 +11,11 @@ function nextSlide() {
   window.location.reload();
 }
 
-const cancel = (event) => {
-  event.stopPropagation();
-  event.preventDefault();
-};
+// const cancel = (event) => {
+//   event.stopPropagation();
+//   event.preventDefault();
+// };
 
-window.addEventListener("keydown", cancel);
-window.addEventListener("keyup", cancel);
-window.addEventListener("keypress", cancel);
+// window.addEventListener("keydown", cancel);
+// window.addEventListener("keyup", cancel);
+// window.addEventListener("keypress", cancel);

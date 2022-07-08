@@ -1,9 +1,25 @@
-# montage
+# Install webviewscreensaver
 
-state:
-folders
-decks
+https://github.com/liquidx/webviewscreensaver
 
-drawing a hand
+# Start the server
 
-collage pipeline
+From project root:
+
+```sh
+slideshow.sh
+```
+
+# Set screen saver in Desktop & Screen Saver properties
+
+Select "WebViewScreenSaver".
+Click "Screen Saver Options…".
+Enter the URL `http://localhost:3000`.
+
+# Install cron job
+
+To start the server automatically:
+
+```sh
+crontab cronjob
+```
