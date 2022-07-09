@@ -40,11 +40,12 @@ body {
 /* Fade content in/out */
 body * {
   opacity: 0;
-  transition: opacity 2s;
+  transition: opacity var(--fadeOutDuration) ease-in;
 }
 
 body.showContent * {
   opacity: 1;
+  transition: opacity var(--fadeInDuration);
 }
 
 #background {
