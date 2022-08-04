@@ -21,9 +21,15 @@ export default class LayoutSelector {
    * Return the "best" rectangulation for the given set of image aspect ratios.
    * Use the supplied weights to score the possible layouts. Weights should sum
    * to 1.
+   *
+   * If no images are supplied, return null.
    */
   static bestRectangulation(boundsAspect, imageAspects, weights) {
     const imageCount = imageAspects.length;
+    if (imageCount === 0) {
+      return null;
+    }
+
     const possibleTemplates = templates[imageCount];
     const rectangulations = possibleTemplates.map((template) => {
       const templateRectangulation = new AspectRectangulation(template);
