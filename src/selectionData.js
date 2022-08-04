@@ -6,7 +6,13 @@ import imageData from "./imageData.js";
 export default async function selectionData(selectionGraph) {
   const graph = map(selectionGraph, async (buffer, key) => {
     const src = key;
-    return Object.assign({ src }, await imageData(buffer));
+    const data = await imageData(buffer);
+    if (!data) {
+      return null;
+    }
+    return Object.assign({ src }, data);
   });
-  return ExplorableGraph.values(graph);
+  const values = await ExplorableGraph.values(graph);
+  const filtered = values.filter((value) => value !== null);
+  return filtered;
 }

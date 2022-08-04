@@ -2,7 +2,13 @@ import exif from "./exif.js";
 
 // Given an image buffer, return just the metadata needed by the collage.
 export default async function imageData(buffer) {
-  const exifData = await exif(buffer);
+  let exifData;
+  try {
+    exifData = await exif(buffer);
+  } catch (e) {
+    // Couldn't parse EXIF data.
+    return null;
+  }
   const { imageSize, tags } = exifData;
   const { height, width } = imageSize;
 
