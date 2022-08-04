@@ -45,6 +45,6 @@ describe("DateRangeFormatter", () => {
 function verifyDateRangeFormat(dateString1, dateString2, expected) {
   const date1 = new Date(Date.parse(dateString1));
   const date2 = new Date(Date.parse(dateString2));
-  const result = DateRangeFormatter.format(date1, date2);
+  const result = DateRangeFormatter.formatRange(date1, date2);
   assert.equal(result, expected);
 }

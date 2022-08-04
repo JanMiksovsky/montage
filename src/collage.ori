@@ -6,7 +6,7 @@
     {{#if base}}
     <base href="{{base}}" />
     {{/if}}
-    <title>{{description}}, {{date}}</title>
+    <title>{{description}}{{#if date}}, {{date}}{{/if}}</title>
     <link rel="stylesheet" href="/collage.css" />
     <script type="module" src="/slideshow.js"></script>
   </head>
@@ -20,7 +20,7 @@
             <div class="GlassTile_edgeGlow GlassTile_upperGlow"></div>
             <div class="GlassTile_container">
               <div class="GlassTile_content">
-                {{description}}, {{date}}      
+                {{description}}{{#if date}}, {{date}}{{/if}}
               </div>
             </div>
             <div class="GlassTile_edgeGlow GlassTile_lowerGlow"></div>

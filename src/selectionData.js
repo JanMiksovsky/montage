@@ -5,7 +5,7 @@ import imageData from "./imageData.js";
 // records containing an image's name, date, and aspect ratio.
 export default async function selectionData(selectionGraph) {
   const graph = map(selectionGraph, async (buffer, key) => {
-    const src = key;
+    const src = escape(key);
     const data = await imageData(buffer);
     if (!data) {
       return null;

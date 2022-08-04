@@ -18,6 +18,17 @@ const monthNames = [
  */
 export default class DateRangeFormatter {
   /**
+   * Given a single date, return a friendly representation of the date
+   * that matches the formats returned by formatRange.
+   *
+   * @param {Date} date
+   */
+  static formatDate(date) {
+    const { month, year } = this.#getDateParts(date);
+    return `${month} ${year}`;
+  }
+
+  /**
    * Given two dates, summarize the time span covered by them.
    *
    * The goal is to natural and express date ranges the way a person would. The
@@ -27,7 +38,7 @@ export default class DateRangeFormatter {
    * @param {Date} date1
    * @param {Date} date2
    */
-  static format(date1, date2) {
+  static formatRange(date1, date2) {
     // Break things apart.
     const { months, years } = this.#getDateDifference(date1, date2);
     const { month: month1, year: year1 } = this.#getDateParts(date1);

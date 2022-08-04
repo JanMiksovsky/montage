@@ -1,16 +1,24 @@
-description: selected
-date: February 2013
-aspect: 1.8848039215686274
+date: October 2006
+gap: 1.6
+aspect: 1.4166666666666665
 items:
-  - src: selected/Big White 001.JPG
-    aspect: 1.3333333333333333
-  - aspect: 0.551470588235294
+  - aspect: 0.3333333333333333
     items:
-      - src: selected/Big White 004.JPG
-        aspect: 0.75
-      - aspect: 2.083333333333333
-        items:
-          - src: selected/Big White 024.JPG
-            aspect: 0.75
-          - src: selected/Big White 027.JPG
-            aspect: 1.3333333333333333
+      - src: Anya%27s Birthday 012.JPG
+        aspect: 0.6666666666666666
+      - src: Anya%27s Birthday 013.JPG
+        aspect: 0.6666666666666666
+  - aspect: 0.3333333333333333
+    items:
+      - src: Anya%27s Birthday 024.JPG
+        aspect: 0.6666666666666666
+      - src: Anya%27s Birthday 015.JPG
+        aspect: 0.6666666666666666
+  - aspect: 0.75
+    items:
+      - src: Anya%27s Birthday 034.JPG
+        aspect: 1.5
+      - src: Anya%27s Birthday 065.JPG
+        aspect: 1.5
+base: library/2006/Anya's Birthday/
+description: Anya's Birthday

@@ -69,11 +69,19 @@ function applyRectangulation(rectangulation, records) {
 function formatDateRange(imageRecords) {
   // Get the minimum and maximum dates.
   const dates = imageRecords.map(({ date }) => date);
-  const minDate = new Date(Math.min(...dates));
-  const maxDate = new Date(Math.max(...dates));
+  const filtered = dates.filter((date) => date);
 
-  // Format that date range.
-  return DateRangeFormatter.format(minDate, maxDate);
+  if (filtered.length === 0) {
+    return null;
+  } else if (filtered.length === 1) {
+    return DateRangeFormatter.formatDate(filtered[0]);
+  } else {
+    const minDate = new Date(Math.min(...filtered));
+    const maxDate = new Date(Math.max(...filtered));
+
+    // Format that date range.
+    return DateRangeFormatter.formatRange(minDate, maxDate);
+  }
 }
 
 function pickTemplate(photos) {
