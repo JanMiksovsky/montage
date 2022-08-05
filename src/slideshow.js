@@ -1,5 +1,5 @@
-// const slideshowIntervalSeconds = 10;
-const slideshowIntervalSeconds = 60;
+const slideshowIntervalSeconds = 10;
+// const slideshowIntervalSeconds = 60;
 const fadeInDuration = 2;
 const fadeOutDuration = 2;
 

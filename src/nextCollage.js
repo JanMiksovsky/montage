@@ -21,21 +21,33 @@ export default async function nextCollage(graph) {
 
 async function* collageGenerator(graph) {
   const folders = await leafFolders(graph);
-  while (true) {
+
+  // Assume we'll have images for collages. After each shuffle, we'll set this
+  // to false, then set it true again only if we are able to successfully
+  // generate a collage. If this flag is still false by the time we've exhausted
+  // the folders, then none of the folders had sufficient images to make a
+  // collage. In that case, we'll quit looping.
+  let continueGenerating = true;
+
+  while (continueGenerating) {
+    continueGenerating = false;
     shuffle(folders);
     for (const folder of folders) {
       const hand = await draw(folder);
       const result = await collage(hand);
-      // HACK: Would like to avoid using file system paths
-      if (root && folder.path) {
-        result.base = path.relative(root, folder.path) + "/";
+      if (result) {
+        // HACK: Would like to avoid using file system paths
+        if (root && folder.path) {
+          result.base = path.relative(root, folder.path) + "/";
 
-        // Use the last part of the path as the collage description.
-        // We need a better way to get the name of the graph.
-        const pathParts = folder.path.split("/");
-        result.description = pathParts[pathParts.length - 1];
+          // Use the last part of the path as the collage description.
+          // We need a better way to get the name of the graph.
+          const pathParts = folder.path.split("/");
+          result.description = pathParts[pathParts.length - 1];
+        }
+        continueGenerating = true;
+        yield result;
       }
-      yield result;
     }
   }
 }

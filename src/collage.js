@@ -4,6 +4,8 @@ import LayoutSelector from "./LayoutSelector.js";
 import screenAspect from "./screenAspect.js";
 import selectionData from "./selectionData.js";
 
+const minPhotosForCollage = 2;
+
 export default async function collage(imagesGraph) {
   const selection = await selectionData(imagesGraph);
 
@@ -11,6 +13,13 @@ export default async function collage(imagesGraph) {
     const { src, aspect } = imageRecord;
     return { src, aspect };
   });
+
+  if (imageRecords.length < minPhotosForCollage) {
+    // Not enough images to make a collage, or at least not enough with valid
+    // image data.
+    return null;
+  }
+
   const aspects = imageRecords.map((imageRecord) => imageRecord.aspect);
 
   const date = formatDateRange(selection);
