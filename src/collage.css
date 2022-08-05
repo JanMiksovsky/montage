@@ -73,8 +73,7 @@ body.showContent * {
 
 #main {
   align-self: center;
-  /* align-content: space-evenly;
-  justify-items: center; */
+  justify-items: center;
   padding: var(--gap);
   gap: var(--gap);
   grid-template: 1fr auto / 1fr;
