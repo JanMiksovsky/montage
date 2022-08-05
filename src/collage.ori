@@ -14,19 +14,21 @@
     <div id="background"></div>
     <div id="main">
       {{ collageColumns.ori . }}
-      <div class="GlassTile">
-        <div class="GlassTile_edge">
-          <div class="GlassTile_inner">
-            <div class="GlassTile_edgeGlow GlassTile_upperGlow"></div>
-            <div class="GlassTile_container">
-              <div class="GlassTile_content">
-                {{description}}{{#if date}}, {{date}}{{/if}}
+      <div class="tileGrid">
+        <div class="GlassTile">
+          <div class="GlassTile_edge">
+            <div class="GlassTile_inner">
+              <div class="GlassTile_edgeGlow GlassTile_upperGlow"></div>
+              <div class="GlassTile_container">
+                <div class="GlassTile_content">
+                  {{description}}{{#if date}}, {{date}}{{/if}}
+                </div>
               </div>
+              <div class="GlassTile_edgeGlow GlassTile_lowerGlow"></div>
             </div>
-            <div class="GlassTile_edgeGlow GlassTile_lowerGlow"></div>
           </div>
+          <div class="GlassTile_reflection"></div>
         </div>
-        <div class="GlassTile_reflection"></div>
       </div>
     </div>
   </body>
