@@ -11,10 +11,5 @@
     "strict": true,
     "target": "ESNext"
   },
-  "include": [
-    "src/**/*.js",
-    "test/**/*.js",
-    "archive/screenDimensions.yaml = this(displayInfo.yaml).js",
-    "src/…collage.yaml = collage(hand)"
-  ]
+  "include": ["src/**/*.js", "test/**/*.js"]
 }

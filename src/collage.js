@@ -15,22 +15,12 @@ export default async function collage(imagesGraph) {
 
   const date = formatDateRange(selection);
 
-  // const template = new AspectRectangulation([
-  //   [1, 1],
-  //   [1, 1],
-  // ]);
-  // const template = new AspectRectangulation([[1, 1], 1]);
-  // const template = LayoutSelector.randomTemplateForAspects(aspects);
   const boundsAspect = await screenAspect();
   const weights = {
     areaCovered: 0,
     smallestItem: 0.8,
     random: 0.2,
     symmetry: 0,
-    // areaCovered: 0,
-    // smallestItem: 1,
-    // random: 0,
-    // symmetry: 0,
   };
   const rectangulation = LayoutSelector.bestRectangulation(
     boundsAspect,
