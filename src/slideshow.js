@@ -1,7 +1,9 @@
-// const slideshowIntervalSeconds = 10;
-const slideshowIntervalSeconds = 60;
 const fadeInDuration = 2;
 const fadeOutDuration = 2;
+
+const url = new URL(window.location.href);
+const intervalParam = url.searchParams.get("interval");
+const slideshowIntervalSeconds = intervalParam ? parseInt(intervalParam) : 60;
 
 const slideshow = window.location.pathname === "/slideshow.html";
 
