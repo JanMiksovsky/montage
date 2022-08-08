@@ -48,13 +48,14 @@ async function* collageGenerator(graph) {
       const desiredAspect = aspects.get(graph) || undefined;
       const result = await collage(hand, desiredAspect);
       if (result) {
-        // HACK: Would like to avoid using file system paths
-        if (root && folder.path) {
-          result.base = path.relative(root, folder.path) + "/";
+        // Use the last key in the folder path as the collage description.
+        const folderPath = await folder.get("@path");
+        if (folderPath) {
+          result.base = folderPath + "/";
 
           // Use the last part of the path as the collage description.
           // We need a better way to get the name of the graph.
-          const pathParts = folder.path.split("/");
+          const pathParts = folderPath.split("/");
           result.description = pathParts[pathParts.length - 1];
         }
         continueGenerating = true;
