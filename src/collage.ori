@@ -13,7 +13,9 @@
   <body style="--gap: {{gap}}vmin; --aspect: {{aspect}}">
     <div id="background"></div>
     <div id="main">
+      <div id="collageGrid">
       {{ collageColumns.ori . }}
+      </div>
       <div class="tileGrid">
         <div class="GlassTile">
           <div class="GlassTile_edge">
@@ -21,7 +23,7 @@
               <div class="GlassTile_edgeGlow GlassTile_upperGlow"></div>
               <div class="GlassTile_container">
                 <div class="GlassTile_content">
-                  {{description}}{{#if date}}, {{date}}{{/if}}
+                {{description}}{{#if date}}, {{date}}{{/if}}
                 </div>
               </div>
               <div class="GlassTile_edgeGlow GlassTile_lowerGlow"></div>

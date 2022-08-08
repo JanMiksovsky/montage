@@ -21,7 +21,19 @@ function fadeOut() {
 }
 
 function nextSlide() {
-  window.location.reload();
+  const url = new URL(window.location.href);
+
+  // Find the current aspect ratio of the element that will hold the collage.
+  const collageGrid = document.getElementById("collageGrid");
+  if (collageGrid) {
+    const height = collageGrid.clientHeight;
+    const width = collageGrid.clientWidth;
+    const aspect = width / height;
+    // Pass the aspect ratio to the collage generator as a search param.
+    url.searchParams.set("aspect", encodeURIComponent(aspect));
+  }
+
+  window.location.href = url.href;
 }
 
 function pageLoad() {

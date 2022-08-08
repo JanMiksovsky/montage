@@ -1,3 +1,4 @@
+import { ExplorableGraph } from "@explorablegraph/explorable";
 import path from "path";
 import { fileURLToPath } from "url";
 import collage from "./collage.js";
@@ -8,6 +9,7 @@ import leafFolders from "./leafFolders.js";
 const root = path.dirname(fileURLToPath(import.meta.url));
 
 const generators = new Map();
+const aspects = new Map();
 
 export default async function nextCollage(graph) {
   let generator = generators.get(graph);
@@ -15,6 +17,15 @@ export default async function nextCollage(graph) {
     generator = collageGenerator(graph);
     generators.set(graph, generator);
   }
+
+  // If the URL parameters include a desired aspect ratio for the collage,
+  // associate that aspect ratio with the graph.
+  const aspectParam = await ExplorableGraph.traverse(this, "@params", "aspect");
+  const parsedAspect = aspectParam ? parseFloat(aspectParam) : null;
+  const desiredAspect =
+    parsedAspect && !isNaN(parsedAspect) ? parsedAspect : null;
+  aspects.set(graph, desiredAspect);
+
   const next = await generator.next();
   return next?.value;
 }
@@ -34,7 +45,8 @@ async function* collageGenerator(graph) {
     shuffle(folders);
     for (const folder of folders) {
       const hand = await draw(folder);
-      const result = await collage(hand);
+      const desiredAspect = aspects.get(graph) || undefined;
+      const result = await collage(hand, desiredAspect);
       if (result) {
         // HACK: Would like to avoid using file system paths
         if (root && folder.path) {

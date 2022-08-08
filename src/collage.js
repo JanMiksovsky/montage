@@ -1,12 +1,16 @@
 import AspectRectangulation from "./AspectRectangulation.js";
 import DateRangeFormatter from "./DateRangeFormatter.js";
 import LayoutSelector from "./LayoutSelector.js";
-import screenAspect from "./screenAspect.js";
+// import screenAspect from "./screenAspect.js";
 import selectionData from "./selectionData.js";
 
 const minPhotosForCollage = 2;
+const defaultAspect = 16 / 9;
 
-export default async function collage(imagesGraph) {
+export default async function collage(
+  imagesGraph,
+  desiredAspect = defaultAspect
+) {
   const selection = await selectionData(imagesGraph);
 
   const imageRecords = selection.map((imageRecord) => {
@@ -24,7 +28,7 @@ export default async function collage(imagesGraph) {
 
   const date = formatDateRange(selection);
 
-  const boundsAspect = await screenAspect();
+  // const boundsAspect = await screenAspect();
   const weights = {
     areaCovered: 0,
     smallestItem: 0.8,
@@ -32,7 +36,7 @@ export default async function collage(imagesGraph) {
     symmetry: 0,
   };
   const rectangulation = LayoutSelector.bestRectangulation(
-    boundsAspect,
+    desiredAspect,
     aspects,
     weights
   );
