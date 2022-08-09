@@ -3,13 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    {{#if base}}
-    <base href="{{base}}" />
-    {{/if}}
     <title>{{description}}{{#if date}}, {{date}}{{/if}}</title>
-    <link rel="stylesheet" href="/collage.css" />
-    <script type="module" src="/themes/GlassTile.js"></script>
-    <script type="module" src="/slideshow.js"></script>
+    <link rel="stylesheet" href="./collage.css" />
+    <script type="module" src="./themes/blackFelt.js"></script>
+    <script type="module" src="./slideshow.js"></script>
   </head>
   <body style="--gap: {{gap}}vmin; --aspect: {{aspect}}">
     <div id="background"></div>

@@ -86,32 +86,3 @@ function formatDateRange(imageRecords) {
     return DateRangeFormatter.formatRange(minDate, maxDate);
   }
 }
-
-function pickTemplate(photos) {
-  const bounds = {
-    height: 300,
-    width: 400,
-  };
-  const aspects = photos.map((photo) => 1 / photo.aspect);
-  // Use a deterministic scoring function to pick a template -- no randomness.
-  // const weights = {
-  //   areaCovered: 1,
-  //   smallestItem: 0,
-  //   random: 0,
-  // };
-  // Use a set of balanced weights to score possible layouts.
-  const weights = {
-    areaCovered: 0.05,
-    smallestItem: 0.4,
-    random: 0.45,
-    symmetry: 0.1,
-  };
-  const padding = 0;
-  const template = LayoutSelector.bestRectangulation(
-    bounds,
-    aspects,
-    padding,
-    weights
-  );
-  return template;
-}

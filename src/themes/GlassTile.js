@@ -1,6 +1,6 @@
-import { templateFrom } from "/elix/src/core/htmlLiterals.js";
-import { template } from "/elix/src/core/internal.js";
-import ReactiveElement from "/elix/src/core/ReactiveElement.js";
+import { templateFrom } from "../elix/src/core/htmlLiterals.js";
+import { template } from "../elix/src/core/internal.js";
+import ReactiveElement from "../elix/src/core/ReactiveElement.js";
 
 export default class GlassTile extends ReactiveElement {
   get [template]() {

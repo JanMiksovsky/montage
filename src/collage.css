@@ -91,12 +91,6 @@ body.showContent * {
   aspect-ratio: var(--aspect);
 }
 
-.image {
-  background-size: cover;
-  box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9);
-  margin: var(--gap);
-}
-
 .tileGrid {
   display: grid;
   justify-content: center;

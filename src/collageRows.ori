@@ -1,6 +1,5 @@
 {{#if ./src}}
-<div class="image" style="background-image: url('{{./src}}')">
-</div>
+<montage-image src="{{base}}{{src}}"></montage-image>
 {{/if}}
 {{#if ./items}}
   <div class="photoGrid" style="grid-template-rows: {{ gridProportions ./items, 'rows' }}">
