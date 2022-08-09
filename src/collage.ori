@@ -8,6 +8,7 @@
     {{/if}}
     <title>{{description}}{{#if date}}, {{date}}{{/if}}</title>
     <link rel="stylesheet" href="/collage.css" />
+    <script type="module" src="/themes/GlassTile.js"></script>
     <script type="module" src="/slideshow.js"></script>
   </head>
   <body style="--gap: {{gap}}vmin; --aspect: {{aspect}}">
@@ -17,20 +18,9 @@
       {{ collageColumns.ori . }}
       </div>
       <div class="tileGrid">
-        <div class="GlassTile">
-          <div class="GlassTile_edge">
-            <div class="GlassTile_inner">
-              <div class="GlassTile_edgeGlow GlassTile_upperGlow"></div>
-              <div class="GlassTile_container">
-                <div class="GlassTile_content">
-                {{description}}{{#if date}}, {{date}}{{/if}}
-                </div>
-              </div>
-              <div class="GlassTile_edgeGlow GlassTile_lowerGlow"></div>
-            </div>
-          </div>
-          <div class="GlassTile_reflection"></div>
-        </div>
+        <montage-glass-tile>
+          {{description}}{{#if date}}, {{date}}{{/if}}
+        </montage-glass-tile>
       </div>
     </div>
   </body>
