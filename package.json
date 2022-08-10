@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "exif-parser": "0.1.12",
-    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#4a4fe74b"
+    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#c5f001c6"
   },
   "devDependencies": {
     "@types/chai": "4.2.22",
