@@ -9,7 +9,6 @@ dark1.jpg https://unsplash.com/@karmatheux
 dark2.jpg https://unsplash.com/@ksushlapush
 dark4.jpg https://unsplash.com/@grndezyns
 dark6.jpg https://unsplash.com/@figmentprints
-dark8.jpg https://unsplash.com/es/@lesliedelmoral
 darkPlaster.jpg https://unsplash.com/@anniespratt
 grayPlaster.jpg https://unsplash.com/@anniespratt
 grayStone.jpg https://unsplash.com/@anniespratt
@@ -18,7 +17,6 @@ wood1.jpg https://unsplash.com/@jjbart7
 wood2.jpg https://unsplash.com/@botanicalnature
 wood3.jpg https://unsplash.com/@nate_dumlao
 wood4.jpg https://unsplash.com/@thejmoore
-wood5.jpg https://unsplash.com/@timmossholder
 wood7.jpg https://unsplash.com/@sfhashemi
 cork.jpg https://unsplash.com/@sibilant
 canvas.jpg https://unsplash.com/@enginakyurt
