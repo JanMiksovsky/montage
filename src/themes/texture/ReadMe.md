@@ -17,7 +17,6 @@ grayPlaster.jpg https://unsplash.com/@anniespratt
 grayStone.jpg https://unsplash.com/@anniespratt
 tanLinen.jpg https://unsplash.com/@anniespratt
 wood1.jpg https://unsplash.com/@jjbart7
-wood2.jpg https://unsplash.com/@botanicalnature
 wood3.jpg https://unsplash.com/@nate_dumlao
 wood4.jpg https://unsplash.com/@thejmoore
 wood7.jpg https://unsplash.com/@sfhashemi

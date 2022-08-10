@@ -41,8 +41,7 @@ export default class GlassLabel extends Label {
           border-image-width: 1px;
           border-image-repeat: stretch;
           border-image-slice: 1;
-          /* box-shadow: inset 0 0 16px black; */
-          box-shadow: inset 0 0 16px rgb(0, 0, 0, 0.75);
+          box-shadow: inset 0 0 8px rgb(0, 0, 0, 0.75);
         }
 
         .GlassTile_inner {
@@ -67,7 +66,7 @@ export default class GlassLabel extends Label {
         }
 
         .GlassTile_container {
-          background: radial-gradient(farthest-corner circle at 50% 50%, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
+          background: radial-gradient(farthest-corner circle at 50% 50%, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0));
           padding: 0.75em 1em;
         }
 
@@ -75,7 +74,7 @@ export default class GlassLabel extends Label {
           color: white;
           margin: 0 auto;
           text-align: center;
-          text-shadow: 0px 2px 4px black;
+          text-shadow: 0px 2px 3px black;
         }
 
         .GlassTile_reflection {
