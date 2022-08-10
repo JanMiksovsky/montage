@@ -1,0 +1,18 @@
+montage-slide {
+  background-image: url(/themes/whitePaint/whitePaint.jpg);
+  background-position: center center;
+  background-size: cover;
+  color: #555;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+}
+
+montage-image {
+  box-shadow: 0 0.4em 1em 0.2em rgba(0, 0, 0, 0.5);
+}
+
+montage-label {
+  background: white;
+  box-shadow: 0 0.4em 1em 0.1em rgba(0, 0, 0, 0.5);
+  padding: 1em;
+}

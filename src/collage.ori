@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{{description}}{{#if date}}, {{date}}{{/if}}</title>
     <link rel="stylesheet" href="./collage.css" />
-    <link rel="stylesheet" href="./themes/blackFelt/theme.css" />
-    <script type="module" src="./themes/blackFelt/theme.js"></script>
+    <link rel="stylesheet" href="./themes/whitePaint/theme.css" />
+    <script type="module" src="./themes/whitePaint/theme.js"></script>
     <script type="module" src="./slideshow.js"></script>
   </head>
   <body style="--gap: {{gap}}vmin; --aspect: {{aspect}}">
