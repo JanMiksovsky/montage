@@ -6,6 +6,7 @@ import selectionData from "./selectionData.js";
 
 const minPhotosForCollage = 3;
 const defaultAspect = 16 / 9;
+const earliestSaneDate = new Date(1900, 0, 1);
 
 export default async function collage(
   imagesGraph,
@@ -72,7 +73,7 @@ function applyRectangulation(rectangulation, records) {
 function formatDateRange(imageRecords) {
   // Get the minimum and maximum dates.
   const dates = imageRecords.map(({ date }) => date);
-  const filtered = dates.filter((date) => date);
+  const filtered = dates.filter((date) => date && date >= earliestSaneDate);
 
   if (filtered.length === 0) {
     return null;
