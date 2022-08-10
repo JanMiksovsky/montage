@@ -4,7 +4,7 @@ import LayoutSelector from "./LayoutSelector.js";
 // import screenAspect from "./screenAspect.js";
 import selectionData from "./selectionData.js";
 
-const minPhotosForCollage = 2;
+const minPhotosForCollage = 3;
 const defaultAspect = 16 / 9;
 
 export default async function collage(
