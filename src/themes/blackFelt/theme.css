@@ -1,0 +1,9 @@
+montage-slide {
+  background-image: url(/themes/blackFelt/blackFelt.jpg);
+  background-position: center center;
+  background-size: cover;
+}
+
+montage-image {
+  box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9);
+}

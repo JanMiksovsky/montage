@@ -1,10 +1,31 @@
-import { templateFrom } from "../elix/src/core/htmlLiterals.js";
-import { template } from "../elix/src/core/internal.js";
-import ReactiveElement from "../elix/src/core/ReactiveElement.js";
+import { fragmentFrom } from "../../elix/src/core/htmlLiterals.js";
+import { template } from "../../elix/src/core/internal.js";
+import Label from "../Label.js";
 
-export default class GlassTile extends ReactiveElement {
+export default class GlassLabel extends Label {
   get [template]() {
-    return templateFrom.html`
+    const result = super[template];
+
+    // Wrap default slot with some divs we can style.
+    const defaultSlot = result.content.querySelector("slot:not([name])");
+    if (defaultSlot) {
+      defaultSlot.replaceWith(fragmentFrom.html`
+        <div class="GlassTile_edge">
+          <div class="GlassTile_inner">
+            <div class="GlassTile_edgeGlow GlassTile_upperGlow"></div>
+            <div class="GlassTile_container">
+              <div class="GlassTile_content">
+                <slot></slot>
+              </div>
+            </div>
+            <div class="GlassTile_edgeGlow GlassTile_lowerGlow"></div>
+          </div>
+        </div>
+        <div class="GlassTile_reflection"></div>
+      `);
+    }
+
+    result.content.append(fragmentFrom.html`
       <style>
         :host {
           border: 1px solid rgba(64, 64, 64, 0.25);
@@ -64,20 +85,8 @@ export default class GlassTile extends ReactiveElement {
           width: 100%;
         }
       </style>
-      <div class="GlassTile_edge">
-        <div class="GlassTile_inner">
-          <div class="GlassTile_edgeGlow GlassTile_upperGlow"></div>
-          <div class="GlassTile_container">
-            <div class="GlassTile_content">
-              <slot></slot>
-            </div>
-          </div>
-          <div class="GlassTile_edgeGlow GlassTile_lowerGlow"></div>
-        </div>
-      </div>
-      <div class="GlassTile_reflection"></div>
-    `;
+    `);
+
+    return result;
   }
 }
-
-customElements.define("montage-glass-tile", GlassTile);

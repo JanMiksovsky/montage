@@ -38,12 +38,8 @@ export default class Image extends ReactiveElement {
       <style>
         :host {
           background-size: cover;
-          box-shadow: 0 0.8em 1em 0.2em rgba(0, 0, 0, 0.9);
-          margin: var(--gap);
         }
       </style>
     `;
   }
 }
-
-customElements.define("montage-image", Image);

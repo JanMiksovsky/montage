@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{{description}}{{#if date}}, {{date}}{{/if}}</title>
     <link rel="stylesheet" href="./collage.css" />
-    <script type="module" src="./themes/blackFelt.js"></script>
+    <link rel="stylesheet" href="./themes/blackFelt/theme.css" />
+    <script type="module" src="./themes/blackFelt/theme.js"></script>
     <script type="module" src="./slideshow.js"></script>
   </head>
   <body style="--gap: {{gap}}vmin; --aspect: {{aspect}}">
-    <div id="background"></div>
-    <div id="main">
+    <montage-slide>
       <div id="collageGrid">
       {{ collageColumns.ori . }}
       </div>
       <div class="tileGrid">
-        <montage-glass-tile>
+        <montage-label>
           {{description}}{{#if date}}, {{date}}{{/if}}
-        </montage-glass-tile>
+        </montage-label>
       </div>
-    </div>
+    </montage-slide>
   </body>
 </html>
