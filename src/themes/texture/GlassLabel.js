@@ -29,7 +29,7 @@ export default class GlassLabel extends Label {
       <style>
         :host {
           border: 1px solid rgba(64, 64, 64, 0.25);
-          box-shadow: 0 12px 16px 0px rgba(0,0,0,.5);
+          box-shadow: 0 8px 16px 0px rgba(0, 0, 0, 0.5);
           display: inline-block;
           position: relative;
         }
@@ -41,7 +41,8 @@ export default class GlassLabel extends Label {
           border-image-width: 1px;
           border-image-repeat: stretch;
           border-image-slice: 1;
-          box-shadow: inset 0 0 16px black;
+          /* box-shadow: inset 0 0 16px black; */
+          box-shadow: inset 0 0 16px rgb(0, 0, 0, 0.75);
         }
 
         .GlassTile_inner {
@@ -74,7 +75,7 @@ export default class GlassLabel extends Label {
           color: white;
           margin: 0 auto;
           text-align: center;
-          text-shadow: 1px 5px 4px black;
+          text-shadow: 0px 2px 4px black;
         }
 
         .GlassTile_reflection {

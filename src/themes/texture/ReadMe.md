@@ -4,9 +4,12 @@ beige2.jpg https://unsplash.com/@kiwihug
 beige3.jpg https://unsplash.com/@kiwihug
 brownLinen.jpg https://unsplash.com/@enginakyurt
 brownPaper.jpg https://unsplash.com/@kiwihug
+canvas.jpg https://unsplash.com/@enginakyurt
 cement.jpg https://unsplash.com/@mars_plex
+cork.jpg https://unsplash.com/@sibilant
 dark1.jpg https://unsplash.com/@karmatheux
 dark2.jpg https://unsplash.com/@ksushlapush
+dark3.jpg https://unsplash.com/@leyameera
 dark4.jpg https://unsplash.com/@grndezyns
 dark6.jpg https://unsplash.com/@figmentprints
 darkPlaster.jpg https://unsplash.com/@anniespratt
@@ -18,5 +21,3 @@ wood2.jpg https://unsplash.com/@botanicalnature
 wood3.jpg https://unsplash.com/@nate_dumlao
 wood4.jpg https://unsplash.com/@thejmoore
 wood7.jpg https://unsplash.com/@sfhashemi
-cork.jpg https://unsplash.com/@sibilant
-canvas.jpg https://unsplash.com/@enginakyurt
