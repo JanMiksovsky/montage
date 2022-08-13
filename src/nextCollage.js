@@ -1,12 +1,7 @@
 import { ExplorableGraph } from "@explorablegraph/explorable";
-import path from "path";
-import { fileURLToPath } from "url";
 import collage from "./collage.js";
 import draw from "./draw.js";
 import leafFolders from "./leafFolders.js";
-
-// HACK: Would like to avoid using file system paths
-const root = path.dirname(fileURLToPath(import.meta.url));
 
 const generators = new Map();
 const aspects = new Map();

@@ -1,6 +1,5 @@
-import { shuffle } from "@explorablegraph/explorable";
+import { shuffle, take } from "@explorablegraph/explorable";
 import images from "./images.js";
-import take from "./take.js";
 
 // Pick a random set of 4–6 images from the graph.
 export default async function draw(graph) {

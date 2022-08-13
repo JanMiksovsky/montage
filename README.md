@@ -1,3 +1,5 @@
+Note: As of September 2022, the collage layout styling only works properly in Safari. It doesn't work correctly in Chrome.
+
 # Install webviewscreensaver
 
 https://github.com/liquidx/webviewscreensaver
