@@ -16,7 +16,7 @@ slideshow.sh
 
 Select "WebViewScreenSaver".
 Click "Screen Saver Options…".
-Enter the URL `http://localhost:3000`.
+Enter the URL `http://localhost:3000/slideshow.html`.
 
 # Install cron job
 
