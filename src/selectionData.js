@@ -1,4 +1,4 @@
-import { ExplorableGraph, map } from "@explorablegraph/explorable";
+import { ExplorableGraph, map } from "@graphorigami/origami";
 import imageData from "./imageData.js";
 
 // Given a graph representing a selection of images, return an array of image

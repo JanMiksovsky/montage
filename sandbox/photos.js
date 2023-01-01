@@ -1,4 +1,4 @@
-import { defaultGraph, ExplorableGraph } from "@explorablegraph/explorable";
+import { defaultGraph, ExplorableGraph } from "@graphorigami/origami";
 
 /**
  * Given a graph, filter it to return .JPG/.JPEG files only.

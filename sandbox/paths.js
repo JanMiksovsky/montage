@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 
 /**
  * Return an array of paths to the values in the graph.

@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 
 export default async function gridProportions(items, rowsOrColumns) {
   const plain = await ExplorableGraph.plain(items);

@@ -1,4 +1,4 @@
-import { shuffle, take } from "@explorablegraph/explorable";
+import { shuffle, take } from "@graphorigami/origami";
 import images from "./images.js";
 
 // Pick a random set of 4–6 images from the graph.

@@ -1,4 +1,4 @@
-import { builtins, CommandModules, Compose } from "@explorablegraph/explorable";
+import { builtins, CommandModules, Compose } from "@graphorigami/origami";
 import path from "path";
 import { fileURLToPath } from "url";
 

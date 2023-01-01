@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{{description}}{{#if date}}, {{date}}{{/if}}</title>
+    <title>{{description}}{{if date, =`, {{date}}` }}</title>
     <link rel="stylesheet" href="./collage.css" />
     <link rel="stylesheet" href="./themes/texture/theme.css" />
     <script type="module" src="./themes/texture/theme.js"></script>
@@ -16,7 +16,7 @@
       </div>
       <div class="tileGrid">
         <montage-label>
-          {{description}}{{#if date}}, {{date}}{{/if}}
+          {{description}}{{if date, =`, {{date}}` }}
         </montage-label>
       </div>
     </montage-slide>

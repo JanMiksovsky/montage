@@ -1,4 +1,4 @@
-import { ExplorableGraph, shell } from "@explorablegraph/explorable";
+import { ExplorableGraph, shell } from "@graphorigami/origami";
 
 export default async function screenAspect() {
   // Default aspect ratio is 16:9.

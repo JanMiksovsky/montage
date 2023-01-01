@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 import collage from "./collage.js";
 import draw from "./draw.js";
 import leafFolders from "./leafFolders.js";

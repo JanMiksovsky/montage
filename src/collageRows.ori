@@ -1,10 +1,10 @@
-{{#if ./src}}
+{{if ./src, =`
 <montage-image src="{{base}}{{src}}"></montage-image>
-{{/if}}
-{{#if ./items}}
-  <div class="photoGrid" style="grid-template-rows: {{ gridProportions ./items, 'rows' }}">
-    {{#map ./items}}
-      {{ collageColumns.ori . }}
-    {{/map}}
-  </div>
-{{/if}}
+`}}
+{{if ./items, =`
+<div class="photoGrid" style="grid-template-rows: {{ gridProportions ./items, 'rows' }}">
+  {{map ./items, =`
+    {{ collageColumns.ori . }}
+  `}}
+</div>
+`}}

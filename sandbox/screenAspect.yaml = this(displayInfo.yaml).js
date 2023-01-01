@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 
 export default async function screenAspect(displayInfo) {
   const info = await ExplorableGraph.plain(ExplorableGraph.from(displayInfo));

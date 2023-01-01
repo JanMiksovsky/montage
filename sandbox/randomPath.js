@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 
 // Return a random, arbitrarily-deep path from the graph.
 export default async function randomPath(graph) {
