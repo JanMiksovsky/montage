@@ -1,1 +1,5 @@
+# Launch on boot
 @reboot /Users/jan/Source/montage/slideshow.sh &
+
+# Relaunch every day at 3:00 am
+0 3 * * * /Users/jan/Source/montage/slideshow.sh &
